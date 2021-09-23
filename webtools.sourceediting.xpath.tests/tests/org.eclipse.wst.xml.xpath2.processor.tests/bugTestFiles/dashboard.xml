@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dashboard>
+    <widget type="chart">
+        <title text="Chart Title"></title>
+        <plotOptions xmlns="http://jaspersoft.com/highcharts">
+            <plotOptions>
+                <pie showInLegend="true" shadow="false" innerSize="50%">
+                    <dataLabels color="#fff" distance="-20" format="{point.percentage:.0f} %" overflow="false"></dataLabels>
+                </pie>
+            </plotOptions>
+            <legend width="150" align="right" x="10" layout="vertical">
+                <navigation></navigation>
+            </legend>
+            <tooltip enabled="false"></tooltip>
+            <exporting enabled="true"></exporting>
+        </plotOptions>
+    </widget>
+    <widget type="table">
+        <title>table</title>
+		<table xmlns="http://www.w3.org/1999/xhtml">
+           <thead>dsds</thead>
+           <tbody>dsds</tbody>
+		</table>
+    </widget>
+</dashboard>

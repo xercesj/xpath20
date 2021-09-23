@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="lib" path="lib/xmlunit-1.2.jar"/>
+	<classpathentry kind="lib" path="D:/xerces-2_12_1-xml-schema-1.1/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="D:/xerces-2_12_1-xml-schema-1.1/xml-apis.jar"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins">
+		<accessrules>
+			<accessrule kind="accessible" pattern="org/eclipse/wst/xml/xpath2/processor/**"/>
+		</accessrules>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.wst.xml.xpath2.processor"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.5.0_22"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

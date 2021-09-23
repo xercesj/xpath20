@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<xs:element name="X">
+	   <xs:complexType>
+	      <xs:sequence>
+		     <xs:element name="Y">
+			   <xs:complexType>
+			      <xs:sequence>
+				      <xs:any processContents="skip"/>
+				  </xs:sequence>	
+			   </xs:complexType>
+			 </xs:element>
+			 <xs:element name="Z">
+			   <xs:complexType>
+			      <xs:sequence>
+				      <xs:any processContents="lax"/>
+				  </xs:sequence>	
+			   </xs:complexType>
+			 </xs:element>
+			 <xs:element name="U">
+			   <xs:complexType>
+			      <xs:sequence>
+				      <xs:any/>
+				  </xs:sequence>	
+			   </xs:complexType>
+			 </xs:element>
+		  </xs:sequence>	  
+	   </xs:complexType>
+	</xs:element>
+	
+	<xs:element name="a1">
+	   <xs:complexType>
+	      <xs:sequence>
+		     <xs:element name="tt1" type="xs:string"/>
+		  </xs:sequence>
+	   </xs:complexType>
+	</xs:element>
+	
+</xs:schema>

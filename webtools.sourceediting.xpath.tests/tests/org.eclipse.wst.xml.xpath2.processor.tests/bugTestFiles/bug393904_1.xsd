@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="Elem">
+	   <xs:complexType>
+	      <xs:sequence>
+		     <xs:element name="X">
+		        <xs:complexType>
+	               <xs:sequence>
+	                   <xs:element name="y" type="xs:integer" maxOccurs="unbounded"/>
+	               </xs:sequence>
+	            </xs:complexType>
+		     </xs:element>
+		     <xs:element name="Y">
+		        <xs:complexType mixed="true">
+	               <xs:sequence>
+	                   <xs:element name="z" type="xs:integer" maxOccurs="unbounded"/>
+	               </xs:sequence>
+	            </xs:complexType>
+		     </xs:element>
+		  </xs:sequence>
+	   </xs:complexType>
+	</xs:element>
+
+</xs:schema>

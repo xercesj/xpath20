@@ -1,0 +1,23 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="Z">
+	   <xs:complexType>
+	      <xs:sequence>
+		     <xs:element name="X" maxOccurs="unbounded">
+			    <xs:complexType>
+				   <xs:attribute name="val" type="union_of_DtList_and_integer"/>				   
+				</xs:complexType>
+			 </xs:element>
+		  </xs:sequence>
+	   </xs:complexType>
+	</xs:element>
+	
+	<xs:simpleType name="union_of_DtList_and_integer">
+	   <xs:union memberTypes="xs:integer">
+	      <xs:simpleType>
+		     <xs:list itemType="xs:date"/>
+		  </xs:simpleType>
+	   </xs:union>
+	</xs:simpleType>
+	
+</xs:schema>
