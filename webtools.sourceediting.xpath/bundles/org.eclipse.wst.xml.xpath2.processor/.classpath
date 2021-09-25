@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="lib" path="D:/xerces-2_12_1-xml-schema-1.1/xercesImpl.jar"/>
-	<classpathentry kind="lib" path="D:/xerces-2_12_1-xml-schema-1.1/xml-apis.jar"/>
+	<classpathentry excluding="**/*.lex|**/*.cup" kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins">
 		<accessrules>
 			<accessrule kind="accessible" pattern="org/eclipse/wst/xml/xpath2/**"/>
 		</accessrules>
 	</classpathentry>
-	<classpathentry excluding="**/*.lex|**/*.cup" kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
