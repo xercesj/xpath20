@@ -15,8 +15,8 @@
  *     Jesper S Moller - bug 275610 - Avoid big time and memory overhead for externals
  *     Jesper Steen Moeller - bug 282096 - make test harness handle all string encoding
  *     Jesper Steen Moller  - bug 280555 - Add pluggable collation support
- *     Mukul Gandhi         - bug 338494 - prohibiting xpath expressions starting with / or // to be parsed. to support XSD 1.1.
- *     Mukul Gandhi		Adding support for XSD 1.1 schemas.
+ *     Mukul Gandhi - bug 338494 - prohibiting xpath expressions starting with / or // to be parsed. to support XSD 1.1.
+ *     Mukul Gandhi - Adding support for XSD 1.1 schemas
  *******************************************************************************/
 package org.eclipse.wst.xml.xpath2.processor.test;
 
