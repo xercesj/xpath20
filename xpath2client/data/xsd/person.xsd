@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="persons">
+       <xs:complexType>
+          <xs:sequence>
+             <xs:element name="person" maxOccurs="unbounded">
+                <xs:complexType>
+                   <xs:sequence>
+                      <xs:element name="fName" type="xs:string"/>
+                      <xs:element name="lName" type="xs:string"/>
+                      <xs:element name="age" type="xs:positiveInteger"/>
+                   </xs:sequence>
+                   <xs:attribute name="id" type="xs:integer"/>
+                </xs:complexType>
+             </xs:element>
+          </xs:sequence>
+       </xs:complexType>
+    </xs:element>
+
+</xs:schema>
