@@ -18,6 +18,7 @@ import org.eclipse.wst.xml.xpath2.processor.DynamicContext;
 import org.eclipse.wst.xml.xpath2.processor.Evaluator;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
 import org.eclipse.wst.xml.xpath2.processor.ast.XPath;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSBoolean;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSInteger;
 import org.w3c.dom.Document;
 
@@ -38,6 +39,7 @@ public class XPathClient {
 		XPathClient xPathClient = new XPathClient();
 		xPathClient.test1();
 		xPathClient.test2();
+		xPathClient.test3();
 	}
 	
 	private void test1() {
@@ -77,6 +79,27 @@ public class XPathClient {
 		   
 		   XSInteger xsInteger = (XSInteger)rs.first();
 		   System.out.println("Node count : " + xsInteger.getValue());
+		}
+		catch (Exception ex) {
+		   ex.printStackTrace();
+		}
+	}
+	
+	private void test3() {
+		try {
+		   URL xmlDocUrl = new URL(DOC_BASE_PATH + XML_FILE_PATH1);
+		   URL xsdDocUrl = new URL(DOC_BASE_PATH + XSD_FILE_PATH1);
+		   Document document = XPath2EvaluationUtil.loadDOMDocument(xmlDocUrl, 
+				                                                    xsdDocUrl);
+		   
+		   DynamicContext dc = XPath2EvaluationUtil.setupDynamicContext(null, document);
+		   String xpath = "/persons/person[position() = 3]/@id = 3";
+		   XPath xPath = XPath2EvaluationUtil.compileXPath(dc, xpath);
+		   Evaluator eval = new DefaultEvaluator(dc, document);
+		   ResultSequence rs = eval.evaluate(xPath);
+		   
+		   XSBoolean xsBoolean = (XSBoolean)rs.first();
+		   System.out.println("Result : " + xsBoolean.value());
 		}
 		catch (Exception ex) {
 		   ex.printStackTrace();
