@@ -1,6 +1,7 @@
 # XPath 2.0
 This github repository, contains implementation and test case sources, for an <a href="https://www.w3.org/TR/xpath20">XPath 2.0</a> processor used by 
-<a href="https://xerces.apache.org/xerces2-j">Apache Xerces's XML Schema 1.1 processor</a>.
+<a href="https://xerces.apache.org/xerces2-j">Apache Xerces's XML Schema 1.1 processor</a>. This XPath 2.0 processor, can be used as a general purpose 
+XPath 2.0 processor as well.
 
 The contents of this repository, are derived from following <a href="https://www.eclipse.org/webtools">Eclipse WTP</a> git repositories (where, the original development 
 for Apache Xerces XPath 2.0 processor used to take place):<br/>
