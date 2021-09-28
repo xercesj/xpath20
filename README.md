@@ -8,3 +8,5 @@ of this XPath 2.0 processor used to take place):<br/>
 https://git.eclipse.org/c/sourceediting/webtools.sourceediting.xpath.git (branch 'R3_2_maintenance'. supports JDK 1.4+),
 https://git.eclipse.org/c/sourceediting/webtools.sourceediting.xpath.tests.git (the java code is derived from branch 'R3_2_xpath2_14unittests', supporting JDK 1.5+.
 whereas, the input and expected output files for the test cases are derived from 'master' branch).
+
+This XPath 2.0 processor, was originally designed and developed by Andrea Bittau, which he donated to <a href="https://www.eclipse.org">Eclipse Foundation</a>.
