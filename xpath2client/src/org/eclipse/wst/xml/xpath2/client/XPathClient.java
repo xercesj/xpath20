@@ -28,7 +28,7 @@ import org.w3c.dom.Document;
  */
 public class XPathClient {
 	
-	// change this value for local environment
+	// change value of this variable, for local environment
 	private static String DOC_BASE_PATH = "file:///d:/eclipseWorkspaces/eclipse_xpath2_3_2_maintenance/";
 	
 	private static String XML_FILE_PATH1 = "xpath2client/data/xml/person.xml";
