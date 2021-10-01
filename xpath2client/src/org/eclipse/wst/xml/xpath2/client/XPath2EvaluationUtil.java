@@ -98,4 +98,4 @@ public class XPath2EvaluationUtil {
 		return schema;
 	}
 
-}
+} // XPath2EvaluationUtil
