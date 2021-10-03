@@ -18,13 +18,13 @@ import org.eclipse.wst.xml.xpath2.processor.DefaultEvaluator;
 import org.eclipse.wst.xml.xpath2.processor.DynamicContext;
 import org.eclipse.wst.xml.xpath2.processor.Evaluator;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
-import org.eclipse.wst.xml.xpath2.processor.ResultSequenceFactory;
 import org.eclipse.wst.xml.xpath2.processor.ast.XPath;
-import org.eclipse.wst.xml.xpath2.processor.internal.Focus;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.ElementType;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.TextType;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSBoolean;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSInteger;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSString;
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -150,7 +150,7 @@ public class XPathClient {
 	}
 	
 	private void test5() {
-		// demonstrates, evaluating an XPath expression, with a specific context node
+		// demonstrates, evaluating XPath expressions, with specific context nodes
 		// somewhere within an XML instance document
 		try {
 		   URL xmlDocUrl = new URL(DOC_BASE_PATH + XML_FILE_PATH1);
@@ -159,16 +159,26 @@ public class XPathClient {
 		   DynamicContext dc = XPath2EvaluationUtil.setupDynamicContext(null, document);
 		   Evaluator eval = new DefaultEvaluator(dc, document);
 		   
-		   ResultSequence contextNodeResultSet = ResultSequenceFactory.create_new();
 		   NodeList nList = document.getElementsByTagName("person");
-		   Element contextNode = (Element)nList.item(4);  //   /persons/person[5] is the context node
-		   contextNodeResultSet.add(new ElementType(contextNode, dc.node_position(contextNode)));
-		   dc.set_focus(new Focus(contextNodeResultSet));
+		   //   example 1
+		   //   an element /persons/person[5] is the context node
+		   Element contextElem = (Element)nList.item(4);
+		   XPath2EvaluationUtil.setEvaluationContext(dc, contextElem);
 		   
 		   String xpath = "fName/text()";
 		   XPath xPath = XPath2EvaluationUtil.compileXPath(dc, xpath);
 		   ResultSequence rs = eval.evaluate(xPath);
 		   System.out.println(((TextType)rs.get(0)).string_value());
+		   
+		   //   example 2
+  		   //   an attribute /persons/person[5]/@id is the context node
+		   Attr contextAttr = ((Element)nList.item(4)).getAttributeNode("id");
+		   XPath2EvaluationUtil.setEvaluationContext(dc, contextAttr);
+		   
+		   xpath = "string()";
+		   xPath = XPath2EvaluationUtil.compileXPath(dc, xpath);
+		   rs = eval.evaluate(xPath);
+		   System.out.println(((XSString)rs.get(0)).value());
 		}
 		catch (Exception ex) {
 		   ex.printStackTrace();

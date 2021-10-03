@@ -26,6 +26,8 @@ import org.eclipse.wst.xml.xpath2.processor.DOMLoaderException;
 import org.eclipse.wst.xml.xpath2.processor.DefaultDynamicContext;
 import org.eclipse.wst.xml.xpath2.processor.DynamicContext;
 import org.eclipse.wst.xml.xpath2.processor.JFlexCupParser;
+import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
+import org.eclipse.wst.xml.xpath2.processor.ResultSequenceFactory;
 import org.eclipse.wst.xml.xpath2.processor.StaticChecker;
 import org.eclipse.wst.xml.xpath2.processor.StaticError;
 import org.eclipse.wst.xml.xpath2.processor.StaticNameResolver;
@@ -34,7 +36,13 @@ import org.eclipse.wst.xml.xpath2.processor.XercesLoader;
 import org.eclipse.wst.xml.xpath2.processor.ast.XPath;
 import org.eclipse.wst.xml.xpath2.processor.function.FnFunctionLibrary;
 import org.eclipse.wst.xml.xpath2.processor.function.XSCtrLibrary;
+import org.eclipse.wst.xml.xpath2.processor.internal.Focus;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.AttrType;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.ElementType;
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 /*
@@ -90,6 +98,17 @@ public class XPath2EvaluationUtil {
 		name_check.check(path);
 		
 		return path;
+	}
+	
+	public static void setEvaluationContext(DynamicContext dc, Node contextNode) {
+		ResultSequence contextNodeResultSet = ResultSequenceFactory.create_new();
+		if (contextNode instanceof Element) {
+		   contextNodeResultSet.add(new ElementType((Element)contextNode));
+		}
+		else if (contextNode instanceof Attr) {
+		   contextNodeResultSet.add(new AttrType((Attr)contextNode));	
+		}
+		dc.set_focus(new Focus(contextNodeResultSet));
 	}
 	
 	private static Schema getSchema(InputStream schemaIs) throws SAXException {
