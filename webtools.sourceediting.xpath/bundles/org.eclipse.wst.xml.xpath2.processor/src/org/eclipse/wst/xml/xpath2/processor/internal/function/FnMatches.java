@@ -11,6 +11,7 @@
  *     David Carver - bug 262765 - improvements to Regular Expression   
  *     Jesper Steen Moeller - bug 282096 - clean up string storage
  *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - Fixes for XercesJ bug https://issues.apache.org/jira/browse/XERCESJ-1732
  *******************************************************************************/
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;
@@ -26,7 +27,7 @@ import org.eclipse.wst.xml.xpath2.processor.internal.types.XSString;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.regex.PatternSyntaxException;
+import org.eclipse.wst.xml.xpath2.regex.PatternSyntaxException;
 
 /**
  * The function returns true if $input matches the regular expression supplied
@@ -87,7 +88,7 @@ public class FnMatches extends AbstractRegExFunction {
 			flagRS = (ResultSequence) argiter.next();
 			flags = flagRS.first().string_value();
 			if (validflags.indexOf(flags) == -1 && flags.length() > 0 ) {
-				throw DynamicError.regex_flags_error(null);
+			   throw DynamicError.regex_flags_error(null);
 			}
 		}
 

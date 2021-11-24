@@ -10,6 +10,7 @@
  *     Jesper Steen Moeller - bug 282096 - clean up string storage
  *     Jesper S Moller      - Bug 281938 - no matches should return full input 
  *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - Fixes for XercesJ bug https://issues.apache.org/jira/browse/XERCESJ-1732
  *******************************************************************************/
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;
@@ -24,8 +25,8 @@ import org.eclipse.wst.xml.xpath2.processor.internal.types.XSString;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.regex.Matcher;
-import java.util.regex.PatternSyntaxException;
+import org.eclipse.wst.xml.xpath2.regex.Matcher;
+import org.eclipse.wst.xml.xpath2.regex.PatternSyntaxException;
 
 /**
  * This function breaks the $input string into a sequence of strings, treating
@@ -98,7 +99,7 @@ public class FnTokenize extends AbstractRegExFunction {
 			}
 			
 		} catch (PatternSyntaxException err) {
-			throw DynamicError.regex_error(null);
+			throw DynamicError.regex_error(err.getMessage());
 		}
 
 		return rs;

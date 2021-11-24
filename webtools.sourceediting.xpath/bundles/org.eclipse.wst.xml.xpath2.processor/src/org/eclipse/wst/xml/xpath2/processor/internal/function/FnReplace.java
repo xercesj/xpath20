@@ -10,6 +10,7 @@
  *     David Carver (STAR) - bug 262765 - added exception handling to toss correct error numbers. 
  *     Jesper Steen Moeller - bug 285145 - implement full arity checking
  *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - Fixes for XercesJ bug https://issues.apache.org/jira/browse/XERCESJ-1732
  *******************************************************************************/
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;
@@ -24,14 +25,16 @@ import org.eclipse.wst.xml.xpath2.processor.internal.types.XSString;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.regex.PatternSyntaxException;
+
+import org.eclipse.wst.xml.xpath2.regex.Matcher;
+import org.eclipse.wst.xml.xpath2.regex.PatternSyntaxException;
 
 /**
  * The function returns the xs:string that is obtained by replacing each
  * non-overlapping substring of $input that matches the given $pattern with an
  * occurrence of the $replacement string.
  */
-public class FnReplace extends Function {
+public class FnReplace extends AbstractRegExFunction {
 	private static Collection _expected_args = null;
 
 	/**
@@ -77,51 +80,38 @@ public class FnReplace extends Function {
 
 		ResultSequence arg2 = (ResultSequence) argiter.next();
 		ResultSequence arg3 = (ResultSequence) argiter.next();
-		ResultSequence arg4 = null;
+		String flags = null;
+		
 		if (argiter.hasNext()) {
-			arg4 = (ResultSequence) argiter.next();
-			String flags = arg4.first().string_value();
-			
-			if (flags.length() == 0) {
-				arg4 = null;
-			} else if (isFlagValid(flags) == false) {
-				throw new DynamicError("FORX0001", "Invalid regular expression. flags");
+			ResultSequence flagRS = null;
+			flagRS = (ResultSequence) argiter.next();
+			flags = flagRS.first().string_value();
+			if (validflags.indexOf(flags) == -1 && flags.length() > 0 ) {
+			   throw DynamicError.regex_flags_error(null);
 			}
 		}
+		
 		String pattern = ((XSString) arg2.first()).value();
 		String replacement = ((XSString) arg3.first()).value();
 		
 		try {
-			rs.add(new XSString(str1.replaceAll(pattern, replacement)));
+			Matcher matcher = regex(pattern, flags, str1);
+			rs.add(new XSString(matcher.replaceAll(replacement)));
 			return rs; 
 		} catch (PatternSyntaxException err) {
-			throw DynamicError.regex_error(null);
+			throw DynamicError.regex_error(err.getMessage());
 		} catch (IllegalArgumentException ex) {
-			throw new DynamicError("FORX0004", "invalid regex.");
+			throw new DynamicError("FORX0004", ex.getMessage());
 		} catch (IndexOutOfBoundsException ex) {
 			String className = ex.getClass().getName();
 			if (className.endsWith("StringIndexOutOfBoundsException")) {
-				throw new DynamicError("FORX0004", "result out of bounds");
+				throw new DynamicError("FORX0004", ex.getMessage());
 			}
-			throw new DynamicError("FORX0003", "invalid regex.");
+			throw new DynamicError("FORX0003", ex.getMessage());
 		} catch (Exception ex) {
-			throw new DynamicError("FORX0004", "invalid regex.");
+			throw new DynamicError("FORX0004", ex.getMessage());
 		}
 	}
-	
-	private static boolean isFlagValid(String flag) {
-		char flags[] = {'s', 'm', 'i', 'x'};
-		
-		for (int i = 0; i < flags.length; i++) {
-			if (flag.indexOf(flags[i]) != -1) {
-				return true;
-			}
-		}
-		
-		return false;
-	}
-	
-	
 
 	/**
 	 * Obtain a list of expected arguments.

@@ -2977,7 +2977,7 @@ public class TestBugs extends AbstractPsychoPathTest {
 		assertEquals("true", actual);
 	}
 
-	public void testfnMatches() throws Exception {
+	public void testfnMatches_1() throws Exception {
 		
 		bundle = Platform.getBundle("org.w3c.xqts.testsuite");
 		URL fileURL = bundle.getEntry("/TestSources/emptydoc.xml");
@@ -2993,6 +2993,54 @@ public class TestBugs extends AbstractPsychoPathTest {
 		Evaluator eval = new DefaultEvaluator(dc, domDoc);
 		ResultSequence rs = eval.evaluate(path);
 		assertEquals(true, ((XSBoolean) rs.first()).value());
+	}
+	
+    public void testfnMatches_2() throws Exception {
+		
+		bundle = Platform.getBundle("org.w3c.xqts.testsuite");
+		URL fileURL = bundle.getEntry("/TestSources/emptydoc.xml");
+		loadDOMDocument(fileURL);
+
+		// Get XML Schema Information for the Document
+		XSModel schema = getGrammar();
+
+		DynamicContext dc = setupDynamicContext(schema);
+
+		String xpath = "matches('123', '[0-9]{3}', 'x')";
+		XPath path = compileXPath(dc, xpath);
+		Evaluator eval = new DefaultEvaluator(dc, domDoc);
+		ResultSequence rs = eval.evaluate(path);
+		assertEquals(true, ((XSBoolean) rs.first()).value());
+	}
+    
+    public void testfnMatches_3() throws Exception {
+		
+		bundle = Platform.getBundle("org.w3c.xqts.testsuite");
+		URL fileURL = bundle.getEntry("/TestSources/emptydoc.xml");
+		loadDOMDocument(fileURL);
+
+		// Get XML Schema Information for the Document
+		XSModel schema = getGrammar();
+
+		DynamicContext dc = setupDynamicContext(schema);
+
+		String xpath = "matches('123', '[0- 9]{3}', 'x')";
+		XPath path = compileXPath(dc, xpath);
+		Evaluator eval = new DefaultEvaluator(dc, domDoc);
+		boolean isDynamicError = false;
+		try {
+		   ResultSequence rs = eval.evaluate(path);
+		}
+		catch (DynamicError err) {
+			isDynamicError = true;
+		}
+		
+		if (isDynamicError) {
+		   assertTrue(true);	
+		}
+		else {
+		   assertTrue(false);	
+		}
 	}
 	
 	private CollationProvider createLengthCollatorProvider() {
