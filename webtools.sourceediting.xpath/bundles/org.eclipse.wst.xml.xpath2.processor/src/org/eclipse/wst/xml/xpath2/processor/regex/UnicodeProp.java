@@ -23,7 +23,7 @@
  *
  */
 
-package org.eclipse.wst.xml.xpath2.regex;
+package org.eclipse.wst.xml.xpath2.processor.regex;
 
 import java.util.HashMap;
 import java.util.Locale;

@@ -23,7 +23,7 @@
  *
  */
 
-package org.eclipse.wst.xml.xpath2.regex;
+package org.eclipse.wst.xml.xpath2.processor.regex;
 
 /**
  * The result of a match operation.

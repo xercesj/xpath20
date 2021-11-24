@@ -21,13 +21,13 @@ import org.eclipse.wst.xml.xpath2.processor.ResultSequenceFactory;
 import org.eclipse.wst.xml.xpath2.processor.internal.SeqType;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSString;
+import org.eclipse.wst.xml.xpath2.processor.regex.Matcher;
+import org.eclipse.wst.xml.xpath2.processor.regex.PatternSyntaxException;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-import org.eclipse.wst.xml.xpath2.regex.Matcher;
-import org.eclipse.wst.xml.xpath2.regex.PatternSyntaxException;
 
 /**
  * The function returns the xs:string that is obtained by replacing each

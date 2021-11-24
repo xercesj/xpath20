@@ -23,11 +23,11 @@ import org.eclipse.wst.xml.xpath2.processor.internal.SeqType;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSBoolean;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSString;
+import org.eclipse.wst.xml.xpath2.processor.regex.PatternSyntaxException;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import org.eclipse.wst.xml.xpath2.regex.PatternSyntaxException;
 
 /**
  * The function returns true if $input matches the regular expression supplied

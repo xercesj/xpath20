@@ -12,9 +12,9 @@
 package org.eclipse.wst.xml.xpath2.processor.internal.function;
 
 import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
+import org.eclipse.wst.xml.xpath2.processor.regex.Matcher;
+import org.eclipse.wst.xml.xpath2.processor.regex.Pattern;
 
-import org.eclipse.wst.xml.xpath2.regex.Matcher;
-import org.eclipse.wst.xml.xpath2.regex.Pattern;
 
 public abstract class AbstractRegExFunction extends Function {
 	protected static final String validflags = "smix";

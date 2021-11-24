@@ -23,7 +23,7 @@
  *
  */
 
-package org.eclipse.wst.xml.xpath2.regex;
+package org.eclipse.wst.xml.xpath2.processor.regex;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
