@@ -22,7 +22,6 @@
  *
  *
  */
-
 package org.eclipse.wst.xml.xpath2.processor.regex;
 
 import java.text.Normalizer;
@@ -31,7 +30,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-
 
 /**
  * A compiled representation of a regular expression.
@@ -45,14 +43,15 @@ import java.util.Map;
 /*
  * @modification notes: Mukul Gandhi (https://xerces.apache.org/xerces2-j/).
  * 
- * Minor modifications to this class provided by JDK, were done to make it compliant 
+ * Minor modifications to this class provided by JDK 1.8, were done to make it compliant 
  * to XPath 2.0 regex syntax (https://www.w3.org/TR/xquery-operators/#regex-syntax).
  *  
  * The following, XPath 2.0 related modifications to this class were done:
  * The COMMENTS flag was renamed to IGNORE_WHITESPACE. The behavior of this
  * flag was changed, to not recognize regex inline comments starting with
- * character # and whitespace characters within character class expressions
- * are not removed, when XPath 2.0 regex flag "x" is provided.
+ * character # when XPath 2.0 regex flag "x" is provided. When XPath 2.0 regex 
+ * flag "x" is provided, only whitespaces within regex are ignored, for an 
+ * XPath 2.0 processor based on this class.
  * 
  * Other than above mentioned modifications, this class behaves exactly like the
  * Java class : java.util.regex.Pattern (https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html).
@@ -65,23 +64,152 @@ public final class Pattern
     implements java.io.Serializable
 {
 
+    /**
+     * Regular expression modifier values.  Instead of being passed as
+     * arguments, they can also be passed as inline modifiers.
+     * For example, the following statements have the same effect.
+     * <pre>
+     * RegExp r1 = RegExp.compile("abc", Pattern.I|Pattern.M);
+     * RegExp r2 = RegExp.compile("(?im)abc", 0);
+     * </pre>
+     *
+     * The flags are duplicated so that the familiar Perl match flag
+     * names are available.
+     */
+
+    /**
+     * Enables Unix lines mode.
+     *
+     * <p> In this mode, only the <tt>'\n'</tt> line terminator is recognized
+     * in the behavior of <tt>.</tt>, <tt>^</tt>, and <tt>$</tt>.
+     *
+     * <p> Unix lines mode can also be enabled via the embedded flag
+     * expression&nbsp;<tt>(?d)</tt>.
+     */
     public static final int UNIX_LINES = 0x01;
 
+    /**
+     * Enables case-insensitive matching.
+     *
+     * <p> By default, case-insensitive matching assumes that only characters
+     * in the US-ASCII charset are being matched.  Unicode-aware
+     * case-insensitive matching can be enabled by specifying the {@link
+     * #UNICODE_CASE} flag in conjunction with this flag.
+     *
+     * <p> Case-insensitive matching can also be enabled via the embedded flag
+     * expression&nbsp;<tt>(?i)</tt>.
+     *
+     * <p> Specifying this flag may impose a slight performance penalty.  </p>
+     */
     public static final int CASE_INSENSITIVE = 0x02;
 
+    /**
+     * Permits whitespaces in pattern.
+     *
+     */
     public static final int IGNORE_WHITESPACE = 0x04;
 
+    /**
+     * Enables multiline mode.
+     *
+     * <p> In multiline mode the expressions <tt>^</tt> and <tt>$</tt> match
+     * just after or just before, respectively, a line terminator or the end of
+     * the input sequence.  By default these expressions only match at the
+     * beginning and the end of the entire input sequence.
+     *
+     * <p> Multiline mode can also be enabled via the embedded flag
+     * expression&nbsp;<tt>(?m)</tt>.  </p>
+     */
     public static final int MULTILINE = 0x08;
 
+    /**
+     * Enables literal parsing of the pattern.
+     *
+     * <p> When this flag is specified then the input string that specifies
+     * the pattern is treated as a sequence of literal characters.
+     * Metacharacters or escape sequences in the input sequence will be
+     * given no special meaning.
+     *
+     * <p>The flags CASE_INSENSITIVE and UNICODE_CASE retain their impact on
+     * matching when used in conjunction with this flag. The other flags
+     * become superfluous.
+     *
+     * <p> There is no embedded flag character for enabling literal parsing.
+     * @since 1.5
+     */
     public static final int LITERAL = 0x10;
 
+    /**
+     * Enables dotall mode.
+     *
+     * <p> In dotall mode, the expression <tt>.</tt> matches any character,
+     * including a line terminator.  By default this expression does not match
+     * line terminators.
+     *
+     * <p> Dotall mode can also be enabled via the embedded flag
+     * expression&nbsp;<tt>(?s)</tt>.  (The <tt>s</tt> is a mnemonic for
+     * "single-line" mode, which is what this is called in Perl.)  </p>
+     */
     public static final int DOTALL = 0x20;
 
+    /**
+     * Enables Unicode-aware case folding.
+     *
+     * <p> When this flag is specified then case-insensitive matching, when
+     * enabled by the {@link #CASE_INSENSITIVE} flag, is done in a manner
+     * consistent with the Unicode Standard.  By default, case-insensitive
+     * matching assumes that only characters in the US-ASCII charset are being
+     * matched.
+     *
+     * <p> Unicode-aware case folding can also be enabled via the embedded flag
+     * expression&nbsp;<tt>(?u)</tt>.
+     *
+     * <p> Specifying this flag may impose a performance penalty.  </p>
+     */
     public static final int UNICODE_CASE = 0x40;
 
+    /**
+     * Enables canonical equivalence.
+     *
+     * <p> When this flag is specified then two characters will be considered
+     * to match if, and only if, their full canonical decompositions match.
+     * The expression <tt>"a&#92;u030A"</tt>, for example, will match the
+     * string <tt>"&#92;u00E5"</tt> when this flag is specified.  By default,
+     * matching does not take canonical equivalence into account.
+     *
+     * <p> There is no embedded flag character for enabling canonical
+     * equivalence.
+     *
+     * <p> Specifying this flag may impose a performance penalty.  </p>
+     */
     public static final int CANON_EQ = 0x80;
 
+    /**
+     * Enables the Unicode version of <i>Predefined character classes</i> and
+     * <i>POSIX character classes</i>.
+     *
+     * <p> When this flag is specified then the (US-ASCII only)
+     * <i>Predefined character classes</i> and <i>POSIX character classes</i>
+     * are in conformance with
+     * <a href="http://www.unicode.org/reports/tr18/"><i>Unicode Technical
+     * Standard #18: Unicode Regular Expression</i></a>
+     * <i>Annex C: Compatibility Properties</i>.
+     * <p>
+     * The UNICODE_CHARACTER_CLASS mode can also be enabled via the embedded
+     * flag expression&nbsp;<tt>(?U)</tt>.
+     * <p>
+     * The flag implies UNICODE_CASE, that is, it enables Unicode-aware case
+     * folding.
+     * <p>
+     * Specifying this flag may impose a performance penalty.  </p>
+     * @since 1.7
+     */
     public static final int UNICODE_CHARACTER_CLASS = 0x100;
+
+    /* Pattern has only two serialized components: The pattern string
+     * and the flags, which are all that is needed to recompile the pattern
+     * when it is deserialized.
+     */
 
     /** use serialVersionUID from Merlin b59 for interoperability */
     private static final long serialVersionUID = 5073258162644648461L;
@@ -175,8 +303,6 @@ public final class Pattern
      * (2) There is complement node of Category or Block
      */
     private transient boolean hasSupplementary;
-    
-    private boolean withinCharClassExpr = false;
 
     /**
      * Compiles the given regular expression into a pattern.
@@ -976,9 +1102,8 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
      */
     private void accept(int ch, String s) {
         int testChar = temp[cursor++];
-        if (has(IGNORE_WHITESPACE) && !withinCharClassExpr) {
-           testChar = parsePastWhitespace(testChar);
-        }
+        if (has(IGNORE_WHITESPACE))
+            testChar = parsePastWhitespace(testChar);
         if (ch != testChar) {
             throw error(s);
         }
@@ -996,7 +1121,7 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
      */
     private int peek() {
         int ch = temp[cursor];
-        if (has(IGNORE_WHITESPACE) && !withinCharClassExpr)
+        if (has(IGNORE_WHITESPACE))
             ch = peekPastWhitespace(ch);
         return ch;
     }
@@ -1006,8 +1131,17 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
      */
     private int read() {
         int ch = temp[cursor++];
-        if (has(IGNORE_WHITESPACE) && !withinCharClassExpr)
+        if (has(IGNORE_WHITESPACE))
             ch = parsePastWhitespace(ch);
+        return ch;
+    }
+
+    /**
+     * Read the next character, and advance the cursor by one,
+     * ignoring the COMMENTS setting
+     */
+    private int readEscaped() {
+        int ch = temp[cursor++];
         return ch;
     }
 
@@ -1016,7 +1150,7 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
      */
     private int next() {
         int ch = temp[++cursor];
-        if (has(IGNORE_WHITESPACE) && !withinCharClassExpr)
+        if (has(IGNORE_WHITESPACE))
             ch = peekPastWhitespace(ch);
         return ch;
     }
@@ -1045,8 +1179,51 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
      */
     private int parsePastWhitespace(int ch) {
         while (ASCII.isSpace(ch))
-           ch = temp[cursor++];            
+           ch = temp[cursor++];
+        
         return ch;
+    }
+
+    /**
+     * xmode parse past comment to end of line.
+     */
+    private int parsePastLine() {
+        int ch = temp[cursor++];
+        while (ch != 0 && !isLineSeparator(ch))
+            ch = temp[cursor++];
+        if (ch == 0 && cursor > patternLength) {
+            cursor = patternLength;
+            ch = temp[cursor++];
+        }
+        return ch;
+    }
+
+    /**
+     * xmode peek past comment to end of line.
+     */
+    private int peekPastLine() {
+        int ch = temp[++cursor];
+        while (ch != 0 && !isLineSeparator(ch))
+            ch = temp[++cursor];
+        if (ch == 0 && cursor > patternLength) {
+            cursor = patternLength;
+            ch = temp[cursor];
+        }
+        return ch;
+    }
+
+    /**
+     * Determines if character is a line separator in the current mode
+     */
+    private boolean isLineSeparator(int ch) {
+        if (has(UNIX_LINES)) {
+            return ch == '\n';
+        } else {
+            return (ch == '\n' ||
+                    ch == '\r' ||
+                    (ch|1) == '\u2029' ||
+                    ch == '\u0085');
+        }
     }
 
     /**
@@ -1605,7 +1782,6 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
         boolean firstInClass = true;
         int ch = next();
         for (;;) {
-        	withinCharClassExpr = true;
             switch (ch) {
                 case '^':
                     // Negates if first char in a class, otherwise literal
@@ -1696,9 +1872,7 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
                 }
             }
             ch = peek();
-            
-            withinCharClassExpr = false;
-        }        
+        }
     }
 
     private CharProperty bitsOrSingle(BitClass bits, int ch) {
@@ -4867,4 +5041,113 @@ NEXT:       while (i <= last) {
                     return Character.isMirrored(ch);}});
         }
     }
+
+    /**
+     * Creates a predicate which can be used to match a string.
+     *
+     * @return  The predicate which can be used for matching on a string
+     * @since   1.8
+     */
+    /*public Predicate<String> asPredicate() {
+        return s -> matcher(s).find();
+    }*/
+
+    /**
+     * Creates a stream from the given input sequence around matches of this
+     * pattern.
+     *
+     * <p> The stream returned by this method contains each substring of the
+     * input sequence that is terminated by another subsequence that matches
+     * this pattern or is terminated by the end of the input sequence.  The
+     * substrings in the stream are in the order in which they occur in the
+     * input. Trailing empty strings will be discarded and not encountered in
+     * the stream.
+     *
+     * <p> If this pattern does not match any subsequence of the input then
+     * the resulting stream has just one element, namely the input sequence in
+     * string form.
+     *
+     * <p> When there is a positive-width match at the beginning of the input
+     * sequence then an empty leading substring is included at the beginning
+     * of the stream. A zero-width match at the beginning however never produces
+     * such empty leading substring.
+     *
+     * <p> If the input sequence is mutable, it must remain constant during the
+     * execution of the terminal stream operation.  Otherwise, the result of the
+     * terminal stream operation is undefined.
+     *
+     * @param   input
+     *          The character sequence to be split
+     *
+     * @return  The stream of strings computed by splitting the input
+     *          around matches of this pattern
+     * @see     #split(CharSequence)
+     * @since   1.8
+     */
+    /*
+    public Stream<String> splitAsStream(final CharSequence input) {
+        class MatcherIterator implements Iterator<String> {
+            private final Matcher matcher;
+            // The start position of the next sub-sequence of input
+            // when current == input.length there are no more elements
+            private int current;
+            // null if the next element, if any, needs to obtained
+            private String nextElement;
+            // > 0 if there are N next empty elements
+            private int emptyElementCount;
+
+            MatcherIterator() {
+                this.matcher = matcher(input);
+            }
+
+            public String next() {
+                if (!hasNext())
+                    throw new NoSuchElementException();
+
+                if (emptyElementCount == 0) {
+                    String n = nextElement;
+                    nextElement = null;
+                    return n;
+                } else {
+                    emptyElementCount--;
+                    return "";
+                }
+            }
+
+            public boolean hasNext() {
+                if (nextElement != null || emptyElementCount > 0)
+                    return true;
+
+                if (current == input.length())
+                    return false;
+
+                // Consume the next matching element
+                // Count sequence of matching empty elements
+                while (matcher.find()) {
+                    nextElement = input.subSequence(current, matcher.start()).toString();
+                    current = matcher.end();
+                    if (!nextElement.isEmpty()) {
+                        return true;
+                    } else if (current > 0) { // no empty leading substring for zero-width
+                                              // match at the beginning of the input
+                        emptyElementCount++;
+                    }
+                }
+
+                // Consume last matching element
+                nextElement = input.subSequence(current, input.length()).toString();
+                current = input.length();
+                if (!nextElement.isEmpty()) {
+                    return true;
+                } else {
+                    // Ignore a terminal sequence of matching empty elements
+                    emptyElementCount = 0;
+                    nextElement = null;
+                    return false;
+                }
+            }
+        }
+        return StreamSupport.stream(Spliterators.spliteratorUnknownSize(
+                new MatcherIterator(), Spliterator.ORDERED | Spliterator.NONNULL), false);
+    } */
 }

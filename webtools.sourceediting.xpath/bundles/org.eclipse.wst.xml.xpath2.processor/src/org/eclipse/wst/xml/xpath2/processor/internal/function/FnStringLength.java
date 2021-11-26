@@ -18,6 +18,10 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.eclipse.wst.xml.xpath2.processor.DynamicContext;
 import org.eclipse.wst.xml.xpath2.processor.DynamicError;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
@@ -26,10 +30,6 @@ import org.eclipse.wst.xml.xpath2.processor.internal.SeqType;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSInteger;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSString;
-
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Collection;
 
 import com.ibm.icu.text.UTF16;
 

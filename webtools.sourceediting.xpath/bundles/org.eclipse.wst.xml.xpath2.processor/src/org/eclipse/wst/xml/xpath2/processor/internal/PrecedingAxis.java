@@ -12,12 +12,12 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal;
 
+import java.util.Iterator;
+
 import org.eclipse.wst.xml.xpath2.processor.DynamicContext;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequenceFactory;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.NodeType;
-
-import java.util.Iterator;
 
 /**
  * the preceding axis contains all nodes that are descendants of the root of the

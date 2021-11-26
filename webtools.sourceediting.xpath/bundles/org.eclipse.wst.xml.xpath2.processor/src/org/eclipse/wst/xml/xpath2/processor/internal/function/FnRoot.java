@@ -17,6 +17,9 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.eclipse.wst.xml.xpath2.processor.DynamicContext;
 import org.eclipse.wst.xml.xpath2.processor.DynamicError;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
@@ -29,9 +32,6 @@ import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * Returns the root of the tree to which $arg belongs. This will usually, but

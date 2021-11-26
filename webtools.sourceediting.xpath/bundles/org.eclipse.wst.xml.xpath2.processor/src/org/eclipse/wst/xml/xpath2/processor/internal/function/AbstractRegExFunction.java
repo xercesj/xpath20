@@ -8,6 +8,7 @@
  * Contributors:
  *     David Carver - bug 262765 - initial API and implementation
  *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - Fixes for XercesJ bug https://issues.apache.org/jira/browse/XERCESJ-1732
  *******************************************************************************/
 package org.eclipse.wst.xml.xpath2.processor.internal.function;
 
@@ -17,7 +18,7 @@ import org.eclipse.wst.xml.xpath2.processor.regex.Pattern;
 
 
 public abstract class AbstractRegExFunction extends Function {
-	protected static final String validflags = "smix";
+	private static final String validflags = "smix";
 
 	public AbstractRegExFunction(QName name, int arity) {
 		super(name, arity);
@@ -74,6 +75,21 @@ public abstract class AbstractRegExFunction extends Function {
 		
 		Pattern p = Pattern.compile(pattern, flag);
 		return p.matcher(src);
+	}
+	
+	protected static boolean isFlagStrValid(String flags) {
+       boolean flagStrValid = true;
+       
+       if (flags.length() > 0) {
+    	  for (int idx = 0; idx < flags.length(); idx++) {
+    		 if (validflags.indexOf(flags.charAt(idx)) == -1) {
+    			flagStrValid = false;
+    			break;
+    		 }
+    	  }
+       }
+       
+       return flagStrValid; 
 	}
 
 }

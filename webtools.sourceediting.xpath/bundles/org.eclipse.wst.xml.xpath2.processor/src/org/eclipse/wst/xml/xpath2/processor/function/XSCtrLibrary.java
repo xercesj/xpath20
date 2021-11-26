@@ -33,7 +33,50 @@
 package org.eclipse.wst.xml.xpath2.processor.function;
 
 import org.eclipse.wst.xml.xpath2.processor.internal.function.ConstructorFL;
-import org.eclipse.wst.xml.xpath2.processor.internal.types.*;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.AnyAtomicType;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSAnyURI;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSBase64Binary;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSBoolean;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSByte;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSDate;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSDateTime;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSDayTimeDuration;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSDecimal;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSDouble;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSDuration;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSEntity;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSFloat;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSGDay;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSGMonth;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSGMonthDay;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSGYear;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSGYearMonth;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSHexBinary;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSID;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSIDREF;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSInt;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSInteger;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSLong;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSNCName;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSNMTOKEN;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSName;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSNegativeInteger;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSNonNegativeInteger;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSNonPositiveInteger;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSNormalizedString;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSNotation;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSPositiveInteger;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSShort;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSString;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSTime;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSToken;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSUnsignedByte;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSUnsignedInt;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSUnsignedLong;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSUnsignedShort;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSUntypedAtomic;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSYearMonthDuration;
 
 /**
  * XML Schema control library support.

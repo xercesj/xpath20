@@ -12,16 +12,6 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;
 
-import org.eclipse.wst.xml.xpath2.processor.DynamicContext;
-import org.eclipse.wst.xml.xpath2.processor.DynamicError;
-import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
-import org.eclipse.wst.xml.xpath2.processor.ResultSequenceFactory;
-import org.eclipse.wst.xml.xpath2.processor.internal.SeqType;
-import org.eclipse.wst.xml.xpath2.processor.internal.types.CalendarType;
-import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
-import org.eclipse.wst.xml.xpath2.processor.internal.types.XSDateTime;
-import org.eclipse.wst.xml.xpath2.processor.internal.types.XSDayTimeDuration;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.GregorianCalendar;
@@ -31,6 +21,16 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.Duration;
 import javax.xml.datatype.XMLGregorianCalendar;
+
+import org.eclipse.wst.xml.xpath2.processor.DynamicContext;
+import org.eclipse.wst.xml.xpath2.processor.DynamicError;
+import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
+import org.eclipse.wst.xml.xpath2.processor.ResultSequenceFactory;
+import org.eclipse.wst.xml.xpath2.processor.internal.SeqType;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.CalendarType;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSDateTime;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSDayTimeDuration;
 
 /**
  * Adjusts an xs:dateTime value to a specific timezone, or to no timezone at

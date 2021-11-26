@@ -14,18 +14,22 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+
+import javax.xml.XMLConstants;
+
 import org.eclipse.wst.xml.xpath2.processor.DynamicError;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequenceFactory;
 import org.eclipse.wst.xml.xpath2.processor.StaticContext;
-import org.eclipse.wst.xml.xpath2.processor.internal.*;
-import org.eclipse.wst.xml.xpath2.processor.internal.types.*;
+import org.eclipse.wst.xml.xpath2.processor.internal.SeqType;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.ElementType;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSString;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
-
-import java.util.*;
-
-import javax.xml.XMLConstants;
 
 /**
  * Returns an xs:QName value (that is, an expanded-QName) by taking an xs:string

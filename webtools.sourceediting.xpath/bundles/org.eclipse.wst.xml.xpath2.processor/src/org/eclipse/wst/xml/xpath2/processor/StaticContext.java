@@ -13,14 +13,14 @@
 
 package org.eclipse.wst.xml.xpath2.processor;
 
+import java.util.Map;
+
 import org.apache.xerces.xs.XSTypeDefinition;
 import org.eclipse.wst.xml.xpath2.processor.internal.function.FunctionLibrary;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.AnyAtomicType;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.NodeType;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSAnyURI;
-
-import java.util.Map;
 
 /**
  * interface to static context

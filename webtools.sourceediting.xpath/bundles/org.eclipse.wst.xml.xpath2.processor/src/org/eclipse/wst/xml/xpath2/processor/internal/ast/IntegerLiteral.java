@@ -13,9 +13,9 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal.ast;
 
-import org.eclipse.wst.xml.xpath2.processor.internal.types.XSInteger;
-
 import java.math.BigInteger;
+
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSInteger;
 
 /**
  * The value of a numeric literal containing no "." anad no e or E character is

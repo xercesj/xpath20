@@ -12,6 +12,12 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import javax.xml.XMLConstants;
+
 import org.eclipse.wst.xml.xpath2.processor.DynamicContext;
 import org.eclipse.wst.xml.xpath2.processor.DynamicError;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
@@ -25,12 +31,6 @@ import org.eclipse.wst.xml.xpath2.processor.internal.types.XSString;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import javax.xml.XMLConstants;
 
 /**
  * Returns the in-scope-prefixes for the element and any of it's ancestors.

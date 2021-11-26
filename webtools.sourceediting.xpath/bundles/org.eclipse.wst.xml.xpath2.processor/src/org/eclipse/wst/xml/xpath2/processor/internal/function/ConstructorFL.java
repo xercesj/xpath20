@@ -11,11 +11,11 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;
 
+import java.util.Hashtable;
+
 import org.eclipse.wst.xml.xpath2.processor.internal.types.AnyAtomicType;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.CtrType;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
-
-import java.util.Hashtable;
 
 /**
  * Constructor class for the functions library.

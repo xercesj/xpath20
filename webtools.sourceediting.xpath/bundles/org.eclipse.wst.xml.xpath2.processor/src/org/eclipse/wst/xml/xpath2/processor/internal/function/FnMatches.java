@@ -16,6 +16,10 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+
 import org.eclipse.wst.xml.xpath2.processor.DynamicError;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequenceFactory;
@@ -24,10 +28,6 @@ import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSBoolean;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSString;
 import org.eclipse.wst.xml.xpath2.processor.regex.PatternSyntaxException;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 
 /**
  * The function returns true if $input matches the regular expression supplied
@@ -84,11 +84,10 @@ public class FnMatches extends AbstractRegExFunction {
 		String flags = null;
 
 		if (argiter.hasNext()) {
-			ResultSequence flagRS = null;
-			flagRS = (ResultSequence) argiter.next();
-			flags = flagRS.first().string_value();
-			if (validflags.indexOf(flags) == -1 && flags.length() > 0 ) {
-			   throw DynamicError.regex_flags_error(null);
+			ResultSequence flagRS = (ResultSequence) argiter.next();
+			flags = flagRS.first().string_value();			
+			if (!isFlagStrValid(flags)) {
+			   throw DynamicError.regex_flags_error(null);	
 			}
 		}
 

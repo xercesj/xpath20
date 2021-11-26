@@ -14,11 +14,11 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal.types;
 
+import java.math.BigInteger;
+
 import org.eclipse.wst.xml.xpath2.processor.DynamicError;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequenceFactory;
-
-import java.math.BigInteger;
 
 public class XSNegativeInteger extends XSNonPositiveInteger {
 	

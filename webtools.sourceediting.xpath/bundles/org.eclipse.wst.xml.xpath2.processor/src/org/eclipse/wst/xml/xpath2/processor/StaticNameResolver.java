@@ -11,6 +11,9 @@
 
 package org.eclipse.wst.xml.xpath2.processor;
 
+import java.util.Collection;
+import java.util.Iterator;
+
 import org.eclipse.wst.xml.xpath2.processor.ast.XPath;
 import org.eclipse.wst.xml.xpath2.processor.internal.StaticAttrNameError;
 import org.eclipse.wst.xml.xpath2.processor.internal.StaticElemNameError;
@@ -77,9 +80,6 @@ import org.eclipse.wst.xml.xpath2.processor.internal.ast.XPathExpr;
 import org.eclipse.wst.xml.xpath2.processor.internal.ast.XPathNode;
 import org.eclipse.wst.xml.xpath2.processor.internal.ast.XPathVisitor;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
-
-import java.util.Collection;
-import java.util.Iterator;
 
 /**
  * This class resolves static names.

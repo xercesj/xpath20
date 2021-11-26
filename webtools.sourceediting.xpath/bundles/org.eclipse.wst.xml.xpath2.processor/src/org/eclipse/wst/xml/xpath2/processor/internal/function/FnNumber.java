@@ -16,6 +16,8 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;
 
+import java.util.Collection;
+
 import org.eclipse.wst.xml.xpath2.processor.DynamicContext;
 import org.eclipse.wst.xml.xpath2.processor.DynamicError;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
@@ -27,8 +29,6 @@ import org.eclipse.wst.xml.xpath2.processor.internal.types.NodeType;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSDouble;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSFloat;
-
-import java.util.Collection;
 
 /**
  * Returns the value indicated by $arg or, if $arg is not specified, the context

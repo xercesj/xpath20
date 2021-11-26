@@ -12,9 +12,9 @@
 
 package org.eclipse.wst.xml.xpath2.processor;
 
-import org.w3c.dom.Document;
-
 import java.io.InputStream;
+
+import org.w3c.dom.Document;
 
 /**
  * The DOM loader loads the XML document.

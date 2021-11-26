@@ -15,6 +15,8 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;
 
+import java.util.Collection;
+
 import org.eclipse.wst.xml.xpath2.processor.DynamicError;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequenceFactory;
@@ -29,8 +31,6 @@ import org.eclipse.wst.xml.xpath2.processor.internal.types.XSDouble;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSFloat;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSString;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSUntypedAtomic;
-
-import java.util.Collection;
 
 /**
  * Computes the effective boolean value of the sequence $arg. If $arg is the

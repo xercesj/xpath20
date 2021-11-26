@@ -11,6 +11,11 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+
 import org.eclipse.wst.xml.xpath2.processor.StaticContext;
 import org.eclipse.wst.xml.xpath2.processor.ast.XPath;
 import org.eclipse.wst.xml.xpath2.processor.function.FnFunctionLibrary;
@@ -75,11 +80,6 @@ import org.eclipse.wst.xml.xpath2.processor.internal.ast.XPathNode;
 import org.eclipse.wst.xml.xpath2.processor.internal.ast.XPathVisitor;
 import org.eclipse.wst.xml.xpath2.processor.internal.function.OpFunctionLibrary;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
-
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 
 /**
  * Normalizer that uses XPathVisitor.

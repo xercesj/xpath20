@@ -14,18 +14,17 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;
 
-import org.eclipse.wst.xml.xpath2.processor.DynamicError;
-import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
-import org.eclipse.wst.xml.xpath2.processor.ResultSequenceFactory;
-import org.eclipse.wst.xml.xpath2.processor.internal.SeqType;
-import org.eclipse.wst.xml.xpath2.processor.internal.types.NodeType;
-import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
-import org.eclipse.wst.xml.xpath2.processor.internal.utils.ResultSequenceUtil;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.TreeSet;
+
+import org.eclipse.wst.xml.xpath2.processor.DynamicError;
+import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
+import org.eclipse.wst.xml.xpath2.processor.internal.SeqType;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.NodeType;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
+import org.eclipse.wst.xml.xpath2.processor.internal.utils.ResultSequenceUtil;
 
 /**
  * Support for Union operation.

@@ -14,14 +14,19 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal;
 
+import java.util.Iterator;
+
 import org.eclipse.wst.xml.xpath2.processor.DynamicError;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
 import org.eclipse.wst.xml.xpath2.processor.StaticContext;
-import org.eclipse.wst.xml.xpath2.processor.internal.ast.*;
-import org.eclipse.wst.xml.xpath2.processor.internal.types.*;
+import org.eclipse.wst.xml.xpath2.processor.internal.ast.ItemType;
+import org.eclipse.wst.xml.xpath2.processor.internal.ast.KindTest;
+import org.eclipse.wst.xml.xpath2.processor.internal.ast.SequenceType;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.AnyAtomicType;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.AnyType;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.NodeType;
+import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
 import org.w3c.dom.Node;
-
-import java.util.*;
 
 /**
  * represents a Sequence types used for matching expected arguments of functions

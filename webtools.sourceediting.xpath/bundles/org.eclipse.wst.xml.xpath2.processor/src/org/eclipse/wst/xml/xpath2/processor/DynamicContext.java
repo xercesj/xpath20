@@ -20,16 +20,16 @@
 
 package org.eclipse.wst.xml.xpath2.processor;
 
+import java.net.URI;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.GregorianCalendar;
+
 import org.eclipse.wst.xml.xpath2.processor.internal.Focus;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.AnyType;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSDuration;
 import org.w3c.dom.Node;
-
-import java.net.URI;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.GregorianCalendar;
 
 /**
  * Interface for dynamic context.

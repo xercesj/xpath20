@@ -13,6 +13,10 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.eclipse.wst.xml.xpath2.processor.DynamicError;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequenceFactory;
@@ -20,10 +24,6 @@ import org.eclipse.wst.xml.xpath2.processor.internal.SeqType;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSDate;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSInteger;
-
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * Returns an xs:integer representing the year in the localized value of $arg.

@@ -14,14 +14,14 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal.utils;
 
+import java.util.Collection;
+import java.util.Iterator;
+
 import org.eclipse.wst.xml.xpath2.processor.DynamicError;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.AnyAtomicType;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.AnyType;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.NodeType;
-
-import java.util.Collection;
-import java.util.Iterator;
 
 /**
  * Generic type promoter for handling subtype substitution and type promotions for functions and operators.

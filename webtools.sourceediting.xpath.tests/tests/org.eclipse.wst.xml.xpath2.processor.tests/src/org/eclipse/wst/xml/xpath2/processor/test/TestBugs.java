@@ -3024,23 +3024,18 @@ public class TestBugs extends AbstractPsychoPathTest {
 
 		DynamicContext dc = setupDynamicContext(schema);
 
-		String xpath = "matches('123', '[0- 9]{3}', 'x')";
+		// test a)
+		String xpath = "matches('123', '[0 - 9]{3}', 'x')";
 		XPath path = compileXPath(dc, xpath);
 		Evaluator eval = new DefaultEvaluator(dc, domDoc);
-		boolean isDynamicError = false;
-		try {
-		   ResultSequence rs = eval.evaluate(path);
-		}
-		catch (DynamicError err) {
-			isDynamicError = true;
-		}
-		
-		if (isDynamicError) {
-		   assertTrue(true);	
-		}
-		else {
-		   assertTrue(false);	
-		}
+ 	    ResultSequence rs = eval.evaluate(path);
+ 	    assertEquals(true, ((XSBoolean) rs.first()).value());
+ 	    
+  	    // test b)
+ 	    xpath = "matches('123', '[0-9]{3} # comment1', 'x')";
+		path = compileXPath(dc, xpath);
+	    rs = eval.evaluate(path);
+	    assertEquals(false, ((XSBoolean) rs.first()).value());
 	}
 	
 	private CollationProvider createLengthCollatorProvider() {

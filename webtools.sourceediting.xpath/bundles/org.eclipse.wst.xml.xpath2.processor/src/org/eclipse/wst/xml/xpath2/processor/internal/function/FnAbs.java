@@ -13,6 +13,8 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;
 
+import java.util.Collection;
+
 import org.eclipse.wst.xml.xpath2.processor.DynamicError;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequenceFactory;
@@ -21,8 +23,6 @@ import org.eclipse.wst.xml.xpath2.processor.internal.types.NumericType;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSDouble;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSFloat;
-
-import java.util.Collection;
 
 /**
  * Returns the absolute value of $arg. If $arg is negative returns -$arg

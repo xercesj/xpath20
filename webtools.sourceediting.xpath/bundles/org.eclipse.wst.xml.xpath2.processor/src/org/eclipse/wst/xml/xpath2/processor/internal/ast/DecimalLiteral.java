@@ -12,9 +12,9 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal.ast;
 
-import org.eclipse.wst.xml.xpath2.processor.internal.types.XSDecimal;
-
 import java.math.BigDecimal;
+
+import org.eclipse.wst.xml.xpath2.processor.internal.types.XSDecimal;
 
 /**
  *The value of a numeric literal containing "." but no e or E character is an

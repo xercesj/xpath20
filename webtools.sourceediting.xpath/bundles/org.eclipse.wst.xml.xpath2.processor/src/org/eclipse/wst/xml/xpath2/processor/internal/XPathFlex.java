@@ -21,7 +21,7 @@ package org.eclipse.wst.xml.xpath2.processor.internal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import java_cup.runtime.*;
+import java_cup.runtime.Symbol;
 
 
 /**

@@ -12,13 +12,13 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;
 
+import java.util.Collection;
+
 import org.eclipse.wst.xml.xpath2.processor.DynamicError;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequenceFactory;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSBoolean;
-
-import java.util.Collection;
 
 /**
  * Returns the xs:boolean value false. Equivalent to xs:boolean("0").

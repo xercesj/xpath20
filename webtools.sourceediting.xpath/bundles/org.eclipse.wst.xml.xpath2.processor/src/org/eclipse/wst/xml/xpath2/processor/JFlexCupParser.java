@@ -12,16 +12,16 @@
 
 package org.eclipse.wst.xml.xpath2.processor;
 
+import java.io.StringReader;
+
+import java_cup.runtime.Symbol;
+
 import org.eclipse.wst.xml.xpath2.processor.ast.XPath;
 import org.eclipse.wst.xml.xpath2.processor.internal.CupError;
 import org.eclipse.wst.xml.xpath2.processor.internal.JFlexError;
 import org.eclipse.wst.xml.xpath2.processor.internal.XPathCup;
 import org.eclipse.wst.xml.xpath2.processor.internal.XPathCupRestricted;
 import org.eclipse.wst.xml.xpath2.processor.internal.XPathFlex;
-
-import java.io.StringReader;
-
-import java_cup.runtime.Symbol;
 
 /**
  * JFlexCupParser parses the xpath expression

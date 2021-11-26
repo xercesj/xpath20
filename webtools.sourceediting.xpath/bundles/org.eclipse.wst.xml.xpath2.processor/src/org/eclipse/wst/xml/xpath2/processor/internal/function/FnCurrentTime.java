@@ -13,6 +13,8 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;
 
+import java.util.Collection;
+
 import org.eclipse.wst.xml.xpath2.processor.DynamicContext;
 import org.eclipse.wst.xml.xpath2.processor.DynamicError;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
@@ -20,8 +22,6 @@ import org.eclipse.wst.xml.xpath2.processor.ResultSequenceFactory;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.AnyType;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSTime;
-
-import java.util.Collection;
 
 /**
  * Returns xs:time(fn:current-dateTime()). This is a xs:time (with timezone) that

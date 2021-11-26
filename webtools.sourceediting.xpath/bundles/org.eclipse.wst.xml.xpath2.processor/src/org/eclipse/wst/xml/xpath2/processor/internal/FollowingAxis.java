@@ -13,13 +13,13 @@
 
 package org.eclipse.wst.xml.xpath2.processor.internal;
 
+import java.util.Iterator;
+import java.util.ListIterator;
+
 import org.eclipse.wst.xml.xpath2.processor.DynamicContext;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequenceFactory;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.NodeType;
-
-import java.util.Iterator;
-import java.util.ListIterator;
 
 /**
  * the following axis contains the context node's following siblings, those
