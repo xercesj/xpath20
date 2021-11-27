@@ -18,6 +18,7 @@ package org.eclipse.wst.xml.xpath2.processor.internal.function;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.wst.xml.xpath2.processor.DynamicError;
 import org.eclipse.wst.xml.xpath2.processor.ResultSequence;
@@ -76,6 +77,12 @@ public class FnTokenize extends AbstractRegExFunction {
 		String str1 = "";
 		if (!arg1.empty()) {
 			str1 = ((XSString) arg1.first()).value();
+			if (str1.length() == 0) {
+			   return rs;	
+			}
+		}
+		else {
+			return rs;	
 		}
 
 		ResultSequence arg2 = (ResultSequence) argiter.next();
@@ -92,24 +99,26 @@ public class FnTokenize extends AbstractRegExFunction {
 		}
 
 		try {
-			ArrayList ret = tokenize(pattern, flags, str1);
+			List ret = tokenize(pattern, flags, str1);
 
 			for (Iterator retIter = ret.iterator(); retIter.hasNext();) {
 			   rs.add(new XSString((String)retIter.next()));	
-			}
-			
-		} catch (PatternSyntaxException err) {
-			throw DynamicError.regex_error(err.getMessage());
+			}			
+		} catch (PatternSyntaxException ex) {
+			throw DynamicError.regex_error(ex.getMessage());
 		}
 
 		return rs;
 	}
 	
-	private static ArrayList tokenize(String pattern, String flags, String src) throws DynamicError {
-		Matcher matcher = regex(pattern, flags, src);
-		ArrayList tokens = new ArrayList();
+	private static List tokenize(String pattern, String flags, String src) throws DynamicError {
+		
+		List tokens = new ArrayList();
+		
+		Matcher matcher = regex(pattern, flags, src);		
 		int startpos = 0;
 		int endpos = src.length();
+		
 		while (matcher.find()) {
 			String delim = matcher.group();
 			if (delim.length() == 0) {
@@ -119,10 +128,15 @@ public class FnTokenize extends AbstractRegExFunction {
 			startpos = matcher.end();
 			tokens.add(token);
 		}
+		
 		if (startpos < endpos) {
 			String token = src.substring(startpos, endpos);
 			tokens.add(token);
 		}
+		else if (startpos == endpos) {
+			tokens.add("");
+		}
+		
 		return tokens;
 	}
 

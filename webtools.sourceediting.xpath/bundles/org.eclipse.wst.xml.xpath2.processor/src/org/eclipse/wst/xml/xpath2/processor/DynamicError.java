@@ -208,7 +208,7 @@ public class DynamicError extends XPathException {
 	 * @since 1.1
 	 */
 	public static DynamicError regex_match_zero_length(String err) {
-		String error = "Invalid regular expression.";
+		String error = "The regular expression must not match zero-length string.";
 
 		if (err != null)
 			error += " " + err;

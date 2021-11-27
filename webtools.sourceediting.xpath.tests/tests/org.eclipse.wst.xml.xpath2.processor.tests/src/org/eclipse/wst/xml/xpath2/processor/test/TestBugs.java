@@ -3037,6 +3037,24 @@ public class TestBugs extends AbstractPsychoPathTest {
 	    rs = eval.evaluate(path);
 	    assertEquals(false, ((XSBoolean) rs.first()).value());
 	}
+    
+    public void testfnTokenize() throws Exception {
+		
+		bundle = Platform.getBundle("org.w3c.xqts.testsuite");
+		URL fileURL = bundle.getEntry("/TestSources/emptydoc.xml");
+		loadDOMDocument(fileURL);
+
+		// Get XML Schema Information for the Document
+		XSModel schema = getGrammar();
+
+		DynamicContext dc = setupDynamicContext(schema);
+
+		String xpath = "deep-equal(tokenize('1,15,,24,50,', ','), ('1', '15', '', '24', '50', ''))";
+		XPath path = compileXPath(dc, xpath);
+		Evaluator eval = new DefaultEvaluator(dc, domDoc);
+ 	    ResultSequence rs = eval.evaluate(path);
+ 	    assertEquals(true, ((XSBoolean) rs.first()).value());
+	}
 	
 	private CollationProvider createLengthCollatorProvider() {
 		return new CollationProvider() {

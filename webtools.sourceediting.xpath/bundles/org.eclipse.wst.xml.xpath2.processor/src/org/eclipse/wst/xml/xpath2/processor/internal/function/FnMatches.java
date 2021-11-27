@@ -96,8 +96,8 @@ public class FnMatches extends AbstractRegExFunction {
 			result = matches(pattern, flags, str1);
 			rs.add(new XSBoolean(result));
 			return rs;
-		} catch (PatternSyntaxException pex) {
-			throw DynamicError.regex_error(pex.getMessage());
+		} catch (PatternSyntaxException ex) {
+			throw DynamicError.regex_error(ex.getMessage());
 		}
 	}
 	

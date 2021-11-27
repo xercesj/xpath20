@@ -98,8 +98,8 @@ public class FnReplace extends AbstractRegExFunction {
 			Matcher matcher = regex(pattern, flags, str1);
 			rs.add(new XSString(matcher.replaceAll(replacement)));
 			return rs; 
-		} catch (PatternSyntaxException err) {
-			throw DynamicError.regex_error(err.getMessage());
+		} catch (PatternSyntaxException ex) {
+			throw DynamicError.regex_error(ex.getMessage());
 		} catch (IllegalArgumentException ex) {
 			throw new DynamicError("FORX0004", ex.getMessage());
 		} catch (IndexOutOfBoundsException ex) {
