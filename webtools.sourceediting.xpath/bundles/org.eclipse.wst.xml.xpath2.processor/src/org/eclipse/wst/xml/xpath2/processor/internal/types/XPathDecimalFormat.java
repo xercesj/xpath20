@@ -8,7 +8,7 @@
  * Contributors:
  *    David Carver - initial API and implementation
  *    Jesper Steen Moller - bug 283404 - fixed locale
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *******************************************************************************/
 
 package org.eclipse.wst.xml.xpath2.processor.internal.types;

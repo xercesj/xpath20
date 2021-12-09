@@ -13,7 +13,7 @@
  *     David Carver - bug 282223 - fixed casting errors.
  *     Jesper Steen Moller - Bug 286062 - Fix idiv error cases and increase precision  
  *     Jesper Steen Moller - bug 281028 - Added constructor from string
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *******************************************************************************/
 
 package org.eclipse.wst.xml.xpath2.processor.internal.types;

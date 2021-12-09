@@ -9,7 +9,7 @@
  *     Andrea Bittau - initial API and implementation from the PsychoPath XPath 2.0
  *     David Carver - bug 262765 - eased restriction on data type...convert numerics to XSDouble.
  *     Jesper S Moller - bug 285806 - fixed fn:subsequence for indexes starting before 1
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *     Mukul Gandhi - bug 338999 - improving compliance of function 'fn:subsequence'. implementing full arity support.
  *******************************************************************************/
 

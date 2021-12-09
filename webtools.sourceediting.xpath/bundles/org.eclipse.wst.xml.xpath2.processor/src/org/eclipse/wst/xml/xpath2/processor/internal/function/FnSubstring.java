@@ -11,7 +11,7 @@
  *     Jesper Steen Moeller - bug 285145 - implement full arity checking
  *     David Carver - bug 282096 - improvements for surrogate handling 
  *     Jesper Steen Moeller - bug 282096 - reimplemented to be surrogate sensitive
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *******************************************************************************/
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;

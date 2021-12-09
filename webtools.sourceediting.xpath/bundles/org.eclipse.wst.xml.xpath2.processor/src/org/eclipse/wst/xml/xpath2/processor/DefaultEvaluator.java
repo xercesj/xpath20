@@ -15,7 +15,7 @@
  *     Jesper Steen Moller  - bug 281938 - undefined context should raise error
  *     Jesper Steen Moller  - bug 262765 - use correct 'effective boolean value'
  *     Jesper Steen Moller  - bug 312191 - instance of test fails with partial matches
- *     Mukul Gandhi         - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi         - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *     Mukul Gandhi         - bug 325262 - providing ability to store an XPath2 sequence into an user-defined variable
  *     Jesper Steen Moller  - bug 316988 - Removed O(n^2) performance for large results
  *     Mukul Gandhi         - bug 343224 - allow user defined simpleType definitions to be available in in-scope schema types

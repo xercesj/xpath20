@@ -15,7 +15,7 @@
  *     Jesper Steen Moller  - bug 280555 - Add pluggable collation support
  *     Jesper Steen Moller  - bug 262765 - Add FORG0006
  *     Jesper Steen Moller  - bug 290337 - Revisit use of ICU
- *     Mukul Gandhi 		- bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi 		- bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *     Mukul Gandhi			- bug 393904 - improvements to computing typed value of element nodes
  *******************************************************************************/
 

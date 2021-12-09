@@ -8,7 +8,7 @@
  * Contributors:
  *     Mukul Gandhi - bug 277639 - implementation of xs:byte data type
  *     David Carver - bug 262765 - fixed abs value tests.
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *******************************************************************************/
 
 package org.eclipse.wst.xml.xpath2.processor.internal.types;

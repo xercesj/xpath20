@@ -13,7 +13,7 @@
  *     Jesper Moller- bug 286452 - always return the stable date/time from dynamic context
  *     Jesper Moller- bug 275610 - Avoid big time and memory overhead for externals
  *     Jesper Moller- bug 280555 - Add pluggable collation support
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *     Mukul Gandhi - bug 325262 - providing ability to store an XPath2 sequence into an user-defined variable.
  *     Mukul Gandhi - bug 362446 - providing API to have non document node as root node of an XDM tree
  *******************************************************************************/

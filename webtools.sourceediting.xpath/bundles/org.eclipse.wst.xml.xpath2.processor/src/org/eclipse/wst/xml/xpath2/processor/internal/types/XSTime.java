@@ -12,7 +12,7 @@
  *                                 correction of casting to time. 
  *     David Carver - bug 280547 - fix dates for comparison 
  *     Jesper Steen Moller - bug 262765 - fix type tests
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *******************************************************************************/
 
 package org.eclipse.wst.xml.xpath2.processor.internal.types;

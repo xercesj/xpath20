@@ -8,7 +8,7 @@
  * Contributors:
  * 	   David Carver (STAR) - bug 281168 - initial API and implementation
  *     David Carver  - bug 281186 - implementation of fn:id and fn:idref
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *******************************************************************************/
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;

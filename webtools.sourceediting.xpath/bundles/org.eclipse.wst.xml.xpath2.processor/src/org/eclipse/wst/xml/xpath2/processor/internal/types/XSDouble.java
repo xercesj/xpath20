@@ -13,7 +13,7 @@
  *     David Carver (STAR) - bug 262765 - various numeric formatting fixes and calculations
  *     David Carver (STAR) - bug 262765 - fixed rounding errors.      
  *     Jesper Steen Moller - Bug 286062 - Fix idiv error cases and increase precision  
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *******************************************************************************/
 
 package org.eclipse.wst.xml.xpath2.processor.internal.types;

@@ -8,7 +8,7 @@
  * Contributors:
  *     Jesper Steen Moeller - bug 285152 - implement fn:normalize-unicocde
  *     Jesper Steen Moller  - bug 290337 - Revisit use of ICU
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *******************************************************************************/
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;

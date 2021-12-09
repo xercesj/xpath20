@@ -10,7 +10,7 @@
  *     David Carver - bug 282096 - improvements for surrogate handling
  *     David Carver - bug 262765 - improvements to Regular Expression   
  *     Jesper Steen Moeller - bug 282096 - clean up string storage
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *     Mukul Gandhi - Fixes for XercesJ bug https://issues.apache.org/jira/browse/XERCESJ-1732
  *******************************************************************************/
 

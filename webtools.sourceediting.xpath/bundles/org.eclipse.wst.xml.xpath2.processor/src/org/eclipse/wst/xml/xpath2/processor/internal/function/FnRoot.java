@@ -11,7 +11,7 @@
  *     Jesper Steen Moeller - bug 285145 - implement full arity checking
  *     Jesper Steen Moeller - bug 281159 - tak extra care to find the root 
  *     Jesper Steen Moller - bug 275610 - Avoid big time and memory overhead for externals
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *     Mukul Gandhi - bug 362446 - providing API to have non document node as root node of an XDM tree
  *******************************************************************************/
 

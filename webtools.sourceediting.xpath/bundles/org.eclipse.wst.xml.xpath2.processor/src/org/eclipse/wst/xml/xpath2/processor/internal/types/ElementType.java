@@ -13,7 +13,7 @@
  *     David Carver  - bug 281186 - implementation of fn:id and fn:idref
  *     David Carver (STAR) - bug 289304 - fix schema awarness of types on elements
  *     Jesper Moller - bug 297958 - Fix fn:nilled for elements
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *     Mukul Gandhi - bug 323900 - improving computing the typed value of element &
  *                                 attribute nodes, where the schema type of nodes
  *                                 are simple, with varieties 'list' and 'union'.

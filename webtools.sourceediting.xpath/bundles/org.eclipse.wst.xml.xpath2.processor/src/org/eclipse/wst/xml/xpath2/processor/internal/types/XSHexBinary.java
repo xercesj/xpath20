@@ -8,7 +8,7 @@
  * Contributors:
  *     Mukul Gandhi - bug 281054 - initial API and implementation
  *     David Carver (STAR) - bug 228223 - fixed casting issue.  Needed to encode the value. 
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *******************************************************************************/
 
 package org.eclipse.wst.xml.xpath2.processor.internal.types;

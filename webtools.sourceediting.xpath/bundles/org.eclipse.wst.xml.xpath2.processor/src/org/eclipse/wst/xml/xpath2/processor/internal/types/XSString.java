@@ -10,7 +10,7 @@
  *     Mukul Gandhi - improved comparison of xs:string with other XDM types
  *  Jesper S Moller - bug 286061   correct handling of quoted string 
  *  Jesper S Moller - bug 280555 - Add pluggable collation support
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *******************************************************************************/
 
 package org.eclipse.wst.xml.xpath2.processor.internal.types;

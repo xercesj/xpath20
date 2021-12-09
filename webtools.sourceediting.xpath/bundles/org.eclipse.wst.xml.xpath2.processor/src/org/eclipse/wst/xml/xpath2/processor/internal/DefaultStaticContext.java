@@ -9,7 +9,7 @@
  *     Andrea Bittau - initial API and implementation from the PsychoPath XPath 2.0
  *     David Carver (STAR) - bug 277792 - add built in types to static context. 
  *     Jesper Steen Moller - bug 297707 - Missing the empty-sequence() type
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *     Mukul Gandhi - bug 325262 - providing ability to store an XPath2 sequence into an user-defined variable
  *     Mukul Gandhi - bug 343224 - allow user defined simpleType definitions to be available in in-scope schema types
  *     Mukul Gandhi - bug 361748 - ability of "instance of" checks to work on sequence types having types xs:untypedAtomic and xs:untyped                                  

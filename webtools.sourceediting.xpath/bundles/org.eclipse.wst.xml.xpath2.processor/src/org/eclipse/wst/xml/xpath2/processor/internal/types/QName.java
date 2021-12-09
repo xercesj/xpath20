@@ -9,7 +9,7 @@
  *     Andrea Bittau - initial API and implementation from the PsychoPath XPath 2.0 
  *     Jesper Moller- bug 281159 - debugging convenience toString method 
  *     David Carver (STAR) - bug 288886 - add unit tests and fix fn:resolve-qname function
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *     Mukul Gandhi	- bug 360306 - improvements to "resolve-QName" function and xs:QName type implementation
  *******************************************************************************/
 

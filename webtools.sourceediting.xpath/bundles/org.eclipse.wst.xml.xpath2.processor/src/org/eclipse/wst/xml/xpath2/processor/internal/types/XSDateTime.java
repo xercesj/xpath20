@@ -12,7 +12,7 @@
  *     David Carver - bug 282223 - implementation of xs:duration.
  *                  - bug 262765 - additional tweak to convert 24:00:00 to 00:00:00
  *     David Carver - bug 280547 - fix dates for comparison 
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *     Mukul Gandhi - bug 380326 - result of addition of xs:dateTime and xs:dayTimeDuration values is erroneous sometimes
  *******************************************************************************/
 

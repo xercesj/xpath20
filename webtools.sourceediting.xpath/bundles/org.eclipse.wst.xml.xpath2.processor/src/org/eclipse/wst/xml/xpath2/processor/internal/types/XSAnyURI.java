@@ -12,7 +12,7 @@
  *         untypedAtomic, and anyURI are allowed.
  *     David Carver (STAR) - bug 283777 - implemented gt, lt comparison code.
  *     Jesper Steen Moller - bug 281159 - added promotion of xs:anyURI to string (reverse case) 
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *     Mukul Gandhi  - fixed a bug in implementation of "eq" function 
  *******************************************************************************/
 

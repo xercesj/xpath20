@@ -11,7 +11,7 @@
  *     David Carver (STAR) - bug 282223 - fix timezone adjustment creation.
  *                                        fixed casting issue.
  *     David Carver - bug 280547 - fix dates for comparison 
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *******************************************************************************/
 
 package org.eclipse.wst.xml.xpath2.processor.internal.types;

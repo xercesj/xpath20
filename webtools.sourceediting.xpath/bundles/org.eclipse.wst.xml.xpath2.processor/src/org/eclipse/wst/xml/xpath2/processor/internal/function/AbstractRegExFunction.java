@@ -7,7 +7,7 @@
  *
  * Contributors:
  *     David Carver - bug 262765 - initial API and implementation
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *     Mukul Gandhi - Fixes for XercesJ bug https://issues.apache.org/jira/browse/XERCESJ-1732
  *******************************************************************************/
 package org.eclipse.wst.xml.xpath2.processor.internal.function;

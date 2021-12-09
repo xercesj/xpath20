@@ -13,7 +13,7 @@
  *                                 and formatting occur correctly.
  *                               - fix fn:avg casting issues and divide by zero issues.
  *     Jesper Moller - bug 281028 - fix promotion rules for fn:avg
- *     Mukul Gandhi - bug 280798 - PsychoPath support for JDK 1.4
+ *     Mukul Gandhi - bug 280798 - PsychoPath XPath 2.0 support for JDK 1.4
  *******************************************************************************/
 
 package org.eclipse.wst.xml.xpath2.processor.internal.function;
