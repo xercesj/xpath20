@@ -47,14 +47,21 @@ import java.util.Map;
  * to XPath 2.0 regex syntax (https://www.w3.org/TR/xquery-operators/#regex-syntax).
  *  
  * The following, XPath 2.0 related modifications to this class were done:
- * The COMMENTS flag was renamed to IGNORE_WHITESPACE. The behavior of this
+ * 
+ * 1) The COMMENTS flag was renamed to IGNORE_WHITESPACE. The behavior of this
  * flag was changed, to not recognize regex inline comments starting with
  * character # when XPath 2.0 regex flag "x" is provided. When XPath 2.0 regex 
  * flag "x" is provided, only whitespaces within regex are ignored, for an 
  * XPath 2.0 processor based on this class.
  * 
+ * 2) Java allows, escape characters 'x' and 'u' within regex to denote unicode code 
+ * points. But XPath 2.0 / XSD regex syntax, doesn't allow these escape characters. 
+ * Modification to this class, was done to reject the escape characters 'x' and 'u' 
+ * within regex. To specify, unicode code points within XPath 2.0 / XSD regex's, 
+ * the syntax like &#x20; can be used.
+ * 
  * Other than above mentioned modifications, this class behaves exactly like the
- * Java class : java.util.regex.Pattern (https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html).
+ * Java class : java.util.regex.Pattern.
  * 
  * This class is intended, to be used only for an XPath 2.0 implementation. For any other
  * Java application requiring regex's, the class java.util.regex.Pattern provided by JDK 
@@ -1734,7 +1741,9 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
         case 't':
             return '\t';
         case 'u':
-            return u();
+        	// changes for XPath 2.0 regex compliance
+        	break;
+            // return u();
         case 'v':
             // '\v' was implemented as VT/0x0B in releases < 1.8 (though
             // undocumented). In JDK8 '\v' is specified as a predefined
@@ -1754,7 +1763,9 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
                                : new Ctype(ASCII.WORD);
             return -1;
         case 'x':
-            return x();
+        	// changes for XPath 2.0 regex compliance
+        	break;
+            // return x();
         case 'y':
             break;
         case 'z':

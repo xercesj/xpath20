@@ -33,7 +33,10 @@ public abstract class AbstractRegExFunction extends Function {
 		
 		/*if (pattern.indexOf("-[") != -1) {
 			pattern = pattern.replaceAll("\\-\\[", "&&[^");
-		} */
+		}*/
+		
+		// to resolve differences between, XSD regex subtraction operator
+		// and java regex subtraction operator
 		int indx1 = pattern.indexOf("-[");
 		if (indx1 != -1) {
 			String subsPrev = pattern.substring(0, indx1);
