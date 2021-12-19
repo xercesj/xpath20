@@ -59,6 +59,9 @@ import java.util.Map;
  * Modification to this class, was done to reject the escape characters 'x' and 'u' 
  * within regex. To specify, unicode code points within XPath 2.0 / XSD regex's, 
  * the syntax like &#x20; can be used.
+ * Few other, escape characters allowed by Java regex syntax, are disallowed by 
+ * XPath 2.0 / XSD regex syntax. Modification to this class, was done to reject those
+ * other escape characters as well.
  * 
  * Other than above mentioned modifications, this class behaves exactly like the
  * Java class : java.util.regex.Pattern.
@@ -1600,7 +1603,9 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
         int ch = skip();
         switch (ch) {
         case '0':
-            return o();
+        	// changes for XPath 2.0 regex compliance
+        	break;
+            // return o();
         case '1':
         case '2':
         case '3':
@@ -1683,7 +1688,9 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
             }
             return -1;
         case 'a':
-            return '\007';
+        	// changes for XPath 2.0 regex compliance
+        	break;
+            // return '\007';
         case 'b':
             if (inclass) break;
             if (create) root = new Bound(Bound.BOTH, has(UNICODE_CHARACTER_CLASS));
@@ -1696,9 +1703,13 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
                                : new Ctype(ASCII.DIGIT);
             return -1;
         case 'e':
-            return '\033';
+        	// changes for XPath 2.0 regex compliance
+        	break;
+            // return '\033';
         case 'f':
-            return '\f';
+        	// changes for XPath 2.0 regex compliance
+        	break;
+            // return '\f';
         case 'g':
             break;
         case 'h':
@@ -1745,6 +1756,8 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
         	break;
             // return u();
         case 'v':
+        	// changes for XPath 2.0 regex compliance
+        	break;
             // '\v' was implemented as VT/0x0B in releases < 1.8 (though
             // undocumented). In JDK8 '\v' is specified as a predefined
             // character class for all vertical whitespace characters.
@@ -1753,10 +1766,10 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
             // the start or end value, such as [\v-...] or [...-\v], in
             // which a single definite value (0x0B) is expected. For
             // compatibility concern '\013'/0x0B is returned if isrange.
-            if (isrange)
+            /*if (isrange)
                 return '\013';
             if (create) root = new VertWS();
-            return -1;
+            return -1;*/
         case 'w':
             if (create) root = has(UNICODE_CHARACTER_CLASS)
                                ? new Utype(UnicodeProp.WORD)
