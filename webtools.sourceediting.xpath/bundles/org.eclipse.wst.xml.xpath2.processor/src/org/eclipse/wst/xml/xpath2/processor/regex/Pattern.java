@@ -56,12 +56,15 @@ import java.util.Map;
  * 
  * 2) Java allows, escape characters 'x' and 'u' within regex to denote unicode code 
  * points. But XPath 2.0 / XSD regex syntax, doesn't allow these escape characters. 
- * Modification to this class, was done to reject the escape characters 'x' and 'u' 
+ * Modification to this class, was done to not allow escape characters 'x' and 'u' 
  * within regex. To specify, unicode code points within XPath 2.0 / XSD regex's, 
  * the syntax like &#x20; can be used.
  * Few other, escape characters allowed by Java regex syntax, are disallowed by 
- * XPath 2.0 / XSD regex syntax. Modification to this class, was done to reject those
- * other escape characters as well.
+ * XPath 2.0 / XSD regex syntax. Modification to this class, was done not to 
+ * allow those other escape characters as well.
+ * 
+ * 3) Support for XPath 2.0 / XSD unicode block escape expressions, like 
+ * \p{IsBasicLatin}, \p{IsLatin-1Supplement} etc.
  * 
  * Other than above mentioned modifications, this class behaves exactly like the
  * Java class : java.util.regex.Pattern.
@@ -2017,7 +2020,7 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
             name = new String(temp, i, j-i-1);
         }
 
-        int i = name.indexOf('=');
+        /*int i = name.indexOf('=');
         if (i != -1) {
             // property construct \p{name=value}
             String value = name.substring(i + 1);
@@ -2031,9 +2034,9 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
             } else {
                 throw error("Unknown Unicode property {name=<" + name + ">, "
                              + "value=<" + value + ">}");
-            }
-        } else {
-            if (name.startsWith("In")) {
+            }*/
+        //} else {
+            /*if (name.startsWith("In")) {
                 // \p{inBlockName}
                 node = unicodeBlockPropertyFor(name.substring(2));
             } else if (name.startsWith("Is")) {
@@ -2054,8 +2057,23 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
                 }
                 if (node == null)
                     node = charPropertyNodeFor(name);
+            }*/
+        	
+        	// changes for XPath 2.0 regex compliance
+        	if (name.startsWith("Is")) {
+                // \p{isBlockName}
+                node = unicodeBlockPropertyFor(name.substring(2));
             }
-        }
+        	else {
+                if (has(UNICODE_CHARACTER_CLASS)) {
+                    UnicodeProp uprop = UnicodeProp.forPOSIXName(name);
+                    if (uprop != null)
+                        node = new Utype(uprop);
+                }
+                if (node == null)
+                    node = charPropertyNodeFor(name);
+            }
+        //}
         if (maybeComplement) {
             if (node instanceof Category || node instanceof Block)
                 hasSupplementary = true;
