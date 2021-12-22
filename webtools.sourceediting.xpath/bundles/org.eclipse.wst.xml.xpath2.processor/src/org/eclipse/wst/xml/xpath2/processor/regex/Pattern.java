@@ -62,6 +62,8 @@ import java.util.Map;
  * Few other, escape characters allowed by Java regex syntax, are disallowed by 
  * XPath 2.0 / XSD regex syntax. Modification to this class, was done not to 
  * allow those other escape characters as well.
+ * Modifying behavior of this class to comply with XPath 2.0 / XSD regex definitions
+ * of following multi-character escapes : ., \s, \S.
  * 
  * 3) Support for XPath 2.0 / XSD unicode block escape expressions, like 
  * \p{IsBasicLatin}, \p{IsLatin-1Supplement} etc.
@@ -1411,11 +1413,13 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
                 if (has(DOTALL)) {
                     node = new All();
                 } else {
-                    if (has(UNIX_LINES))
+                    /*if (has(UNIX_LINES))
                         node = new UnixDot();
                     else {
                         node = new Dot();
-                    }
+                    }*/
+                	// changes for XPath 2.0 regex compliance
+                    node = new XPath2Dot();
                 }
                 break;
             case '|':
@@ -1663,9 +1667,11 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
             if (create) root = new LineEnding();
             return -1;
         case 'S':
-            if (create) root = has(UNICODE_CHARACTER_CLASS)
+            /*if (create) root = has(UNICODE_CHARACTER_CLASS)
                                ? new Utype(UnicodeProp.WHITE_SPACE).complement()
-                               : new Ctype(ASCII.SPACE).complement();
+                               : new Ctype(ASCII.SPACE).complement();*/
+        	// changes for XPath 2.0 regex compliance
+            if (create) root = new XPath2Whitespace().complement();
             return -1;
         case 'T':
         case 'U':
@@ -1748,9 +1754,11 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
         case 'r':
             return '\r';
         case 's':
-            if (create) root = has(UNICODE_CHARACTER_CLASS)
+            /*if (create) root = has(UNICODE_CHARACTER_CLASS)
                                ? new Utype(UnicodeProp.WHITE_SPACE)
-                               : new Ctype(ASCII.SPACE);
+                               : new Ctype(ASCII.SPACE);*/
+        	// changes for XPath 2.0 regex compliance
+        	if (create) root = new XPath2Whitespace();
             return -1;
         case 't':
             return '\t';
@@ -3500,6 +3508,20 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
     static final class UnixDot extends CharProperty {
         boolean isSatisfiedBy(int ch) {
             return ch != '\n';
+        }
+    }
+    
+    // changes for XPath 2.0 regex compliance
+    static final class XPath2Dot extends CharProperty {
+        boolean isSatisfiedBy(int ch) {
+            return ch != '\n' && ch != '\r';
+        }
+    }
+    
+    // changes for XPath 2.0 regex compliance
+    static final class XPath2Whitespace extends CharProperty {
+        boolean isSatisfiedBy(int ch) {
+            return ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r';
         }
     }
 

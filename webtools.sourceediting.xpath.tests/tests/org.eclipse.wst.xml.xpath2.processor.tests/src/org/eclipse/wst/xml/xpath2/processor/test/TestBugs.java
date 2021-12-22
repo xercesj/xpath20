@@ -3036,6 +3036,30 @@ public class TestBugs extends AbstractPsychoPathTest {
 		path = compileXPath(dc, xpath);
 	    rs = eval.evaluate(path);
 	    assertEquals(false, ((XSBoolean) rs.first()).value());
+	    
+	    // test c)
+ 	    xpath = "matches('\n', '.')";
+		path = compileXPath(dc, xpath);
+	    rs = eval.evaluate(path);
+	    assertEquals(false, ((XSBoolean) rs.first()).value());
+	    
+	    // test d)
+ 	    xpath = "matches('\r', '.')";
+		path = compileXPath(dc, xpath);
+	    rs = eval.evaluate(path);
+	    assertEquals(false, ((XSBoolean) rs.first()).value());
+	    
+	    // test e)
+ 	    xpath = "matches('abc', '.{3}')";
+		path = compileXPath(dc, xpath);
+	    rs = eval.evaluate(path);
+	    assertEquals(true, ((XSBoolean) rs.first()).value());
+	    
+	    // test f)
+ 	    xpath = "matches('ab\r', '.{3}')";
+		path = compileXPath(dc, xpath);
+	    rs = eval.evaluate(path);
+	    assertEquals(false, ((XSBoolean) rs.first()).value());
 	}
     
     public void testfnTokenize() throws Exception {
