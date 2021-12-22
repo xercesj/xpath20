@@ -31,6 +31,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import org.apache.xerces.util.XML11Char;
+
 /**
  * A compiled representation of a regular expression.
  *
@@ -59,14 +61,19 @@ import java.util.Map;
  * Modification to this class, was done to not allow escape characters 'x' and 'u' 
  * within regex. To specify, unicode code points within XPath 2.0 / XSD regex's, 
  * the syntax like &#x20; can be used.
+ * 
  * Few other, escape characters allowed by Java regex syntax, are disallowed by 
  * XPath 2.0 / XSD regex syntax. Modification to this class, was done not to 
  * allow those other escape characters as well.
- * Modifying behavior of this class to comply with XPath 2.0 / XSD regex definitions
- * of following multi-character escapes : ., \s, \S.
  * 
- * 3) Support for XPath 2.0 / XSD unicode block escape expressions, like 
- * \p{IsBasicLatin}, \p{IsLatin-1Supplement} etc.
+ * Modification to this class were done, to comply with XPath 2.0 / XSD regex 
+ * definitions of following multi-character escapes : ., \s, \S.
+ * 
+ * Implemented the XPath 2.0 / XSD regex multi-character escape sequences 
+ * \i, \I, \c, \C. 
+ * 
+ * 3) Modification to this class were done, to support XPath 2.0 / XSD 
+ * unicode block escape expressions, like \p{IsBasicLatin}, \p{IsLatin-1Supplement} etc.
  * 
  * Other than above mentioned modifications, this class behaves exactly like the
  * Java class : java.util.regex.Pattern.
@@ -1636,7 +1643,10 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
             if (create) root = new Bound(Bound.NONE, has(UNICODE_CHARACTER_CLASS));
             return -1;
         case 'C':
-            break;
+            // break;
+        	// changes for XPath 2.0 regex compliance
+        	if (create) root = new XMLNameChar().complement();
+            return -1;
         case 'D':
             if (create) root = has(UNICODE_CHARACTER_CLASS)
                                ? new Utype(UnicodeProp.DIGIT).complement()
@@ -1653,6 +1663,9 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
             if (create) root = new HorizWS().complement();
             return -1;
         case 'I':
+        	// changes for XPath 2.0 regex compliance
+        	if (create) root = new XMLNameStartChar().complement();
+            return -1;
         case 'J':
         case 'K':
         case 'L':
@@ -1705,7 +1718,10 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
             if (create) root = new Bound(Bound.BOTH, has(UNICODE_CHARACTER_CLASS));
             return -1;
         case 'c':
-            return c();
+            //return c();
+        	// changes for XPath 2.0 regex compliance
+        	if (create) root = new XMLNameChar();
+            return -1;
         case 'd':
             if (create) root = has(UNICODE_CHARACTER_CLASS)
                                ? new Utype(UnicodeProp.DIGIT)
@@ -1725,6 +1741,9 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
             if (create) root = new HorizWS();
             return -1;
         case 'i':
+        	// changes for XPath 2.0 regex compliance
+        	if (create) root = new XMLNameStartChar();
+            return -1;
         case 'j':
             break;
         case 'k':
@@ -3522,6 +3541,20 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
     static final class XPath2Whitespace extends CharProperty {
         boolean isSatisfiedBy(int ch) {
             return ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r';
+        }
+    }
+    
+    // changes for XPath 2.0 regex compliance
+    static final class XMLNameStartChar extends CharProperty {
+        boolean isSatisfiedBy(int ch) {
+            return XML11Char.isXML11NameStart(ch);
+        }
+    }
+    
+    // changes for XPath 2.0 regex compliance
+    static final class XMLNameChar extends CharProperty {
+        boolean isSatisfiedBy(int ch) {
+            return XML11Char.isXML11Name(ch);
         }
     }
 
