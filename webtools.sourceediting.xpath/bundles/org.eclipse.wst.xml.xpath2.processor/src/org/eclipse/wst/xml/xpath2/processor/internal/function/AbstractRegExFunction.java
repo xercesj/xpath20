@@ -28,29 +28,24 @@ public abstract class AbstractRegExFunction extends Function {
 		super(name, min_arity, max_arity);
 	}
 	
-	protected static boolean matches(String pattern, String flags, String src) {
-		boolean fnd = false;
+	/*
+	 * Transform input pattern string, to resolve differences between, 
+	 * XSD regex subtraction operator and java regex subtraction operator. 
+	 */
+	protected static String trfPatternStrForSubtraction(String pattern) {
+		String transformedPatternStr = pattern;
 		
-		/*if (pattern.indexOf("-[") != -1) {
-			pattern = pattern.replaceAll("\\-\\[", "&&[^");
-		}*/
-		
-		// to resolve differences between, XSD regex subtraction operator
-		// and java regex subtraction operator
-		int indx1 = pattern.indexOf("-[");
+		int indx1 = transformedPatternStr.indexOf("-[");
 		if (indx1 != -1) {
-			String subsPrev = pattern.substring(0, indx1);
-			String subsAfter = pattern.substring(indx1 + 2);
+			String subsPrev = transformedPatternStr.substring(0, indx1);
+			String subsAfter = transformedPatternStr.substring(indx1 + 2);
 			if ((subsPrev.indexOf("[") != -1) && (subsAfter.indexOf("]]") != -1)) {
-				pattern = pattern.replaceAll("\\-\\[", "&&[^");	
+				transformedPatternStr = transformedPatternStr.replaceAll("\\-\\[", 
+						                                                    "&&[^");	
 			}
 		}
 		
-		Matcher m = compileAndExecute(pattern, flags, src);
-		while (m.find()) {
-			fnd = true;
-		}
-		return fnd;
+		return transformedPatternStr;
 	}
 	
 	protected static Matcher regex(String pattern, String flags, String src) {
@@ -58,7 +53,23 @@ public abstract class AbstractRegExFunction extends Function {
 		return matcher;
 	}
 	
-	private static Matcher compileAndExecute(String pattern, String flags, String src) {
+	protected static boolean isFlagStrValid(String flags) {
+       boolean flagStrValid = true;
+       
+       if (flags.length() > 0) {
+    	  for (int idx = 0; idx < flags.length(); idx++) {
+    		 if (validflags.indexOf(flags.charAt(idx)) == -1) {
+    			flagStrValid = false;
+    			break;
+    		 }
+    	  }
+       }
+       
+       return flagStrValid; 
+	}
+	
+	private static Matcher compileAndExecute(String pattern, String flags, 
+			                                 String src) {
 		int flag = Pattern.UNIX_LINES;
 		if (flags != null) {
 			if (flags.indexOf("m") >= 0) {
@@ -78,21 +89,6 @@ public abstract class AbstractRegExFunction extends Function {
 		
 		Pattern p = Pattern.compile(pattern, flag);
 		return p.matcher(src);
-	}
-	
-	protected static boolean isFlagStrValid(String flags) {
-       boolean flagStrValid = true;
-       
-       if (flags.length() > 0) {
-    	  for (int idx = 0; idx < flags.length(); idx++) {
-    		 if (validflags.indexOf(flags.charAt(idx)) == -1) {
-    			flagStrValid = false;
-    			break;
-    		 }
-    	  }
-       }
-       
-       return flagStrValid; 
 	}
 
 }

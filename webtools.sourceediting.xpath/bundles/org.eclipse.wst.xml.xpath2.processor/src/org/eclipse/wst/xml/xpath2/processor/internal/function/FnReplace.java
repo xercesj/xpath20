@@ -95,7 +95,8 @@ public class FnReplace extends AbstractRegExFunction {
 		String replacement = ((XSString) arg3.first()).value();
 		
 		try {
-			Matcher matcher = regex(pattern, flags, str1);
+			Matcher matcher = regex(trfPatternStrForSubtraction(pattern), flags, 
+					                                                  str1);
 			rs.add(new XSString(matcher.replaceAll(replacement)));
 			return rs; 
 		} catch (PatternSyntaxException ex) {

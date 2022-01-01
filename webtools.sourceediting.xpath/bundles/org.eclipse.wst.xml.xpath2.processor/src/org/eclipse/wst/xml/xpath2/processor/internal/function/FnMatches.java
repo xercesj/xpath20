@@ -27,6 +27,7 @@ import org.eclipse.wst.xml.xpath2.processor.internal.SeqType;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.QName;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSBoolean;
 import org.eclipse.wst.xml.xpath2.processor.internal.types.XSString;
+import org.eclipse.wst.xml.xpath2.processor.regex.Matcher;
 import org.eclipse.wst.xml.xpath2.processor.regex.PatternSyntaxException;
 
 /**
@@ -93,14 +94,20 @@ public class FnMatches extends AbstractRegExFunction {
 
 		try {
 			boolean result = false;
-			result = matches(pattern, flags, str1);
+			
+			Matcher m = regex(trfPatternStrForSubtraction(pattern), 
+					                             flags, str1);
+			while (m.find()) {
+				result = true;
+			}
+			
 			rs.add(new XSBoolean(result));
+			
 			return rs;
 		} catch (PatternSyntaxException ex) {
 			throw DynamicError.regex_error(ex.getMessage());
 		}
 	}
-	
 
 	/**
 	 * Obtain a list of expected arguments.

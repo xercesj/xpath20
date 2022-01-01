@@ -99,7 +99,8 @@ public class FnTokenize extends AbstractRegExFunction {
 		}
 
 		try {
-			List ret = tokenize(pattern, flags, str1);
+			List ret = tokenize(trfPatternStrForSubtraction(pattern), flags, 
+					                                             str1);
 
 			for (Iterator retIter = ret.iterator(); retIter.hasNext();) {
 			   rs.add(new XSString((String)retIter.next()));	

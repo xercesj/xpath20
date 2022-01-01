@@ -3062,7 +3062,27 @@ public class TestBugs extends AbstractPsychoPathTest {
 	    assertEquals(false, ((XSBoolean) rs.first()).value());
 	}
     
-    public void testfnTokenize() throws Exception {
+    public void testfnReplace() throws Exception {
+		
+		bundle = Platform.getBundle("org.w3c.xqts.testsuite");
+		URL fileURL = bundle.getEntry("/TestSources/emptydoc.xml");
+		loadDOMDocument(fileURL);
+
+		// Get XML Schema Information for the Document
+		XSModel schema = getGrammar();
+
+		DynamicContext dc = setupDynamicContext(schema);
+        
+		// test the fn:replace function, whose regex argument 
+		// has character class subtraction.
+		String xpath = "replace('xyzpqr','[a-z-[aeiuo]]','MN')";
+		XPath path = compileXPath(dc, xpath);
+		Evaluator eval = new DefaultEvaluator(dc, domDoc);
+ 	    ResultSequence rs = eval.evaluate(path);
+ 	    assertEquals("MNMNMNMNMNMN", ((XSString) rs.first()).value());
+	}
+    
+    public void testfnTokenize_1() throws Exception {
 		
 		bundle = Platform.getBundle("org.w3c.xqts.testsuite");
 		URL fileURL = bundle.getEntry("/TestSources/emptydoc.xml");
@@ -3074,6 +3094,26 @@ public class TestBugs extends AbstractPsychoPathTest {
 		DynamicContext dc = setupDynamicContext(schema);
 
 		String xpath = "deep-equal(tokenize('1,15,,24,50,', ','), ('1', '15', '', '24', '50', ''))";
+		XPath path = compileXPath(dc, xpath);
+		Evaluator eval = new DefaultEvaluator(dc, domDoc);
+ 	    ResultSequence rs = eval.evaluate(path);
+ 	    assertEquals(true, ((XSBoolean) rs.first()).value());
+	}
+    
+    public void testfnTokenize_2() throws Exception {
+		
+		bundle = Platform.getBundle("org.w3c.xqts.testsuite");
+		URL fileURL = bundle.getEntry("/TestSources/emptydoc.xml");
+		loadDOMDocument(fileURL);
+
+		// Get XML Schema Information for the Document
+		XSModel schema = getGrammar();
+
+		DynamicContext dc = setupDynamicContext(schema);
+
+		// test the fn:tokenize function, whose regex argument 
+		// has character class subtraction.
+		String xpath = "deep-equal(tokenize('abc','[a-z-[aeiuo]]'), ('a','',''))";
 		XPath path = compileXPath(dc, xpath);
 		Evaluator eval = new DefaultEvaluator(dc, domDoc);
  	    ResultSequence rs = eval.evaluate(path);
