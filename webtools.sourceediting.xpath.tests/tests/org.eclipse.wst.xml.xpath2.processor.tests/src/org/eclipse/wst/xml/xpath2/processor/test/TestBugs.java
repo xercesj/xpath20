@@ -3075,11 +3075,11 @@ public class TestBugs extends AbstractPsychoPathTest {
         
 		// test the fn:replace function, whose regex argument 
 		// has character class subtraction.
-		String xpath = "replace('xyzpqr','[a-z-[aeiuo]]','MN')";
+		String xpath = "replace('xyzpaqr','[a-z-[aeiuo]]','MN')";
 		XPath path = compileXPath(dc, xpath);
 		Evaluator eval = new DefaultEvaluator(dc, domDoc);
  	    ResultSequence rs = eval.evaluate(path);
- 	    assertEquals("MNMNMNMNMNMN", ((XSString) rs.first()).value());
+ 	    assertEquals("MNMNMNMNaMNMN", ((XSString) rs.first()).value());
 	}
     
     public void testfnTokenize_1() throws Exception {
