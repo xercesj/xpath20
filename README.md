@@ -5,9 +5,10 @@ XPath 2.0 processor as well.
 
 The contents of this repository, are derived from following <a href="https://www.eclipse.org/webtools">Eclipse WTP</a> git repositories (where, the original development 
 of this XPath 2.0 processor used to take place):<br/>
-https://git.eclipse.org/c/sourceediting/webtools.sourceediting.xpath.git (branch 'R3_2_maintenance'. supports JDK 1.4+),
-https://git.eclipse.org/c/sourceediting/webtools.sourceediting.xpath.tests.git (the java code is derived from branch 'R3_2_xpath2_14unittests', supporting JDK 1.5+.
-whereas, the input and expected output files for the test cases are derived from 'master' branch).
+https://git.eclipse.org/c/sourceediting/webtools.sourceediting.xpath.git (branch 'R3_2_maintenance'),
+https://git.eclipse.org/c/sourceediting/webtools.sourceediting.xpath.tests.git (the java code is derived from branch 'R3_2_xpath2_14unittests'. whereas, the input and expected output files for the test cases are derived from 'master' branch).
+
+The XPath 2.0 processor, hosted on this repository, supports Java 1.7 and above.
 
 This XPath 2.0 processor, was originally designed and developed by Andrea Bittau, which he donated to <a href="https://www.eclipse.org">Eclipse Foundation</a>.
 The XPath 2.0 processor, was later somewhat improved at Eclipse Foundation, to bring its compliance as with the W3C XPath 2.0 test suite.
