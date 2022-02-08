@@ -3119,6 +3119,30 @@ public class TestBugs extends AbstractPsychoPathTest {
  	    ResultSequence rs = eval.evaluate(path);
  	    assertEquals(true, ((XSBoolean) rs.first()).value());
 	}
+    
+    public void testCdataNode_Test1() throws Exception {
+		URL fileURL = bundle.getEntry("/bugTestFiles/cdata_test1.xml");
+		loadDOMDocument(fileURL);
+
+		// Get XML Schema Information for the Document
+		XSModel schema = getGrammar();
+
+		DynamicContext dc = setupDynamicContext(schema);
+
+		// test a)
+		String xpath = "/Test/count(text()) = 1";
+		XPath path = compileXPath(dc, xpath);
+		Evaluator eval = new DefaultEvaluator(dc, domDoc);
+ 	    ResultSequence rs = eval.evaluate(path);
+ 	    assertEquals(true, ((XSBoolean) rs.first()).value());
+ 	    
+ 	    // test b)
+ 	    xpath = "/Test/text() = '\n  blah\n'";
+		path = compileXPath(dc, xpath);
+		eval = new DefaultEvaluator(dc, domDoc);
+	    rs = eval.evaluate(path);
+	    assertEquals(true, ((XSBoolean) rs.first()).value());
+	}
 	
 	private CollationProvider createLengthCollatorProvider() {
 		return new CollationProvider() {

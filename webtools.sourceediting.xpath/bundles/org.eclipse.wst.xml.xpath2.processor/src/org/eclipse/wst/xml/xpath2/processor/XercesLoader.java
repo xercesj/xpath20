@@ -94,6 +94,7 @@ public class XercesLoader implements DOMLoader {
 		factory.setAttribute(NONVALIDATING_LOAD_DTD_GRAMMAR, Boolean.TRUE);
 		factory.setAttribute(DOCUMENT_IMPLEMENTATION_PROPERTY,
 				DOCUMENT_PSVI_IMPLEMENTATION);
+		factory.setCoalescing(true);
 		
 		if (_schema != null) {
 		  factory.setSchema(_schema);
