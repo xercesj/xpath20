@@ -277,7 +277,7 @@ public class FsEq extends Function {
 			comparator = type.getMethod(mname, margsdef);
 
 		} catch (NoSuchMethodException err) {
-			throw new RuntimeException("Can¿'t find method : " + mname, err);
+			throw new RuntimeException("Can't find method : " + mname, err);
 		}
 
 		// sanity check args and get them

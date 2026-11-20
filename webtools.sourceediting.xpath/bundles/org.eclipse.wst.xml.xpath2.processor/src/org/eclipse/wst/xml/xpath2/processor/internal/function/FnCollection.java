@@ -52,11 +52,11 @@ import org.w3c.dom.Document;
  * If $arg is the empty sequence, the function behaves as if it had been called
  * without an argument. See above.
  *
- * By default, this function is ·stable·. This means that repeated calls on the
+ * By default, this function is stable. This means that repeated calls on the
  * function with the same argument will return the same result. However, for
  * performance reasons, implementations may provide a user option to evaluate
  * the function without a guarantee of stability. The manner in which any such
- * option is provided is ·implementation-defined·. If the user has not selected
+ * option is provided is implementation-defined. If the user has not selected
  * such an option, a call to this function must either return a stable result or
  * must raise an error: [err:FODC0003].
  */

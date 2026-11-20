@@ -2843,7 +2843,7 @@ public class TestBugs extends AbstractPsychoPathTest {
 		DynamicContext dc = setupDynamicContext(schema);
 
 
-		String xpath = "count(Einführung) le 1";
+		String xpath = "count(Einf\u00FChrung) le 1";
 		try {
 		   XPath path = compileXPath(dc, xpath, true);
 		}
