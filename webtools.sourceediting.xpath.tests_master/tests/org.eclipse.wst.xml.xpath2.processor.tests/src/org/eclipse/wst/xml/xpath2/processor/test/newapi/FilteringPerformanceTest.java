@@ -126,7 +126,7 @@ public class FilteringPerformanceTest extends TestCase {
 		assertEquals("Expected single result from \'" + xpath + "\'", 1, rs.size());
 		Object result = rs.value(0);
 		long after = System.nanoTime();
-		System.out.println("XPath2 " + xpath + " evaluated to " + result + " in " + (after-before)/1000 + " μs");
+		System.out.println("XPath2 " + xpath + " evaluated to " + result + " in " + (after-before)/1000 + " \u03BCs");
 		assertTrue("Exected XPath result instanceof class " + resultClass.getSimpleName() + " from \'" + xpath + "\', got " + result.getClass(), resultClass.isInstance(result));
 		return resultClass.cast(result);
 	}
@@ -138,7 +138,7 @@ public class FilteringPerformanceTest extends TestCase {
 //		expression.evaluate(doc);
 		String result = expression.evaluate(doc);
 		long after = System.nanoTime();
-		System.out.println("XPath1 " + xpath + " evaluated to " + result + " in " + (after-before)/1000 + " μs");
+		System.out.println("XPath1 " + xpath + " evaluated to " + result + " in " + (after-before)/1000 + " \u03BCs");
 		return result;
 	}
 
